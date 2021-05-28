@@ -1,4 +1,4 @@
-- HmNetCOM
+- Hm.NetCOM
    Copyright (C) 2021 Akitsugu Komiyama
 
 
