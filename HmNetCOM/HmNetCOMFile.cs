@@ -12,6 +12,10 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+#pragma warning disable 1060 // P/Invoke を NativeMethods クラスに移動しますの警告抑制
+#pragma warning disable 1901 // P/Invoke 宣言はポータブル(x86でもx64でも互換性のある型)でなければなりませんの警告抑制
+#pragma warning disable 2101 // P/Invoke 文字列引数に対してマーシャリングを指定しますの警告抑制
+
 namespace HmNetCOM
 {
     internal partial class Hm
