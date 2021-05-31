@@ -11,10 +11,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-#pragma warning disable 1060 // P/Invoke を NativeMethods クラスに移動しますの警告抑制
-#pragma warning disable 1901 // P/Invoke 宣言はポータブル(x86でもx64でも互換性のある型)でなければなりませんの警告抑制
-#pragma warning disable 2101 // P/Invoke 文字列引数に対してマーシャリングを指定しますの警告抑制
-
 namespace HmNetCOM
 {
     internal partial class Hm
@@ -335,7 +331,7 @@ namespace HmNetCOM
                         const int HIDEMARUINFO_GETFILEFULLPATH = 4;
 
                         StringBuilder sb = new StringBuilder(filePathMaxLength); // まぁこんくらいでさすがに十分なんじゃないの...
-                        bool cwch = SendMessage(hWndHidemaru, WM_HIDEMARUINFO, new IntPtr(HIDEMARUINFO_GETFILEFULLPATH), sb);
+                        IntPtr cwch = SendMessage(hWndHidemaru, WM_HIDEMARUINFO, new IntPtr(HIDEMARUINFO_GETFILEFULLPATH), sb);
                         String filename = sb.ToString();
                         if (String.IsNullOrEmpty(filename))
                         {
@@ -368,8 +364,8 @@ namespace HmNetCOM
                     IntPtr hWndHidemaru = WindowHandle;
                     if (hWndHidemaru != IntPtr.Zero)
                     {
-                        bool cwch = SendMessage(hWndHidemaru, WM_ISMACROEXECUTING, IntPtr.Zero, IntPtr.Zero);
-                        return cwch;
+                        IntPtr cwch = SendMessage(hWndHidemaru, WM_ISMACROEXECUTING, IntPtr.Zero, IntPtr.Zero);
+                        return (cwch != IntPtr.Zero);
                     }
 
                     return false;
@@ -469,8 +465,8 @@ namespace HmNetCOM
 
                     StringBuilder sbFileName = new StringBuilder(filepath);
                     StringBuilder sbRet = new StringBuilder("\x0f0f", 0x0f0f + 1); // 最初の値は帰り値のバッファー
-                    bool cwch = SendMessage(hWndHidemaru, WM_REMOTE_EXECMACRO_FILE, sbRet, sbFileName);
-                    if (cwch)
+                    IntPtr cwch = SendMessage(hWndHidemaru, WM_REMOTE_EXECMACRO_FILE, sbRet, sbFileName);
+                    if (cwch != IntPtr.Zero)
                     {
                         result = new TResult(1, sbRet.ToString(), null);
                     }
@@ -503,8 +499,8 @@ namespace HmNetCOM
 
                     StringBuilder sbExpression = new StringBuilder(expression);
                     StringBuilder sbRet = new StringBuilder("\x0f0f", 0x0f0f + 1); // 最初の値は帰り値のバッファー
-                    bool cwch = SendMessage(hWndHidemaru, WM_REMOTE_EXECMACRO_MEMORY, sbRet, sbExpression);
-                    if (cwch)
+                    IntPtr cwch = SendMessage(hWndHidemaru, WM_REMOTE_EXECMACRO_MEMORY, sbRet, sbExpression);
+                    if (cwch != IntPtr.Zero)
                     {
                         result = new TResult(1, sbRet.ToString(), null);
                     }
@@ -589,42 +585,44 @@ namespace HmNetCOM
 
 namespace HmNetCOM
 {
-    internal partial class Hm
+    internal partial class NativeMethods
     {
-        [DllImport("kernel32.dll")]
-        private extern static uint GetModuleFileName(IntPtr hModule, StringBuilder lpFilename, int nSize);
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        protected extern static uint GetModuleFileName(IntPtr hModule, StringBuilder lpFilename, int nSize);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private extern static IntPtr GlobalLock(IntPtr hMem);
+        protected extern static IntPtr GlobalLock(IntPtr hMem);
 
         [DllImport("kernel32.dll", SetLastError = true)]
+
         [return: MarshalAs(UnmanagedType.Bool)]
+        protected extern static bool GlobalUnlock(IntPtr hMem);
 
-        private extern static bool GlobalUnlock(IntPtr hMem);
         [DllImport("kernel32.dll", SetLastError = true)]
-        private extern static IntPtr GlobalFree(IntPtr hMem);
+        protected extern static IntPtr GlobalFree(IntPtr hMem);
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct POINT
+        protected struct POINT
         {
             public int X;
             public int Y;
         }
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private extern static bool GetCursorPos(out POINT lpPoint);
+        protected extern static bool GetCursorPos(out POINT lpPoint);
 
-        [DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
-        private static extern bool SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
+        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        [DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
-        private static extern bool SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, StringBuilder lParam);
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
+        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, StringBuilder lParam);
 
-        [DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
-        private static extern bool SendMessage(IntPtr hWnd, uint Msg, StringBuilder wParam, StringBuilder lParam);
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
+        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, StringBuilder wParam, StringBuilder lParam);
+    }
 
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int command, IntPtr lparam);
+    internal partial class Hm : NativeMethods
+    {
     }
 }
 
@@ -651,23 +649,27 @@ namespace HmNetCOM
 
 namespace HmNetCOM
 {
+    internal partial class NativeMethods
+    {
+        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+        protected static extern IntPtr LoadLibrary(string lpFileName);
+
+        [DllImport("kernel32", CharSet=CharSet.Ansi, BestFitMapping=false, ExactSpelling=true, SetLastError=true)]
+        protected static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+
+        [DllImport("kernel32", SetLastError = true)]
+        protected static extern bool FreeLibrary(IntPtr hModule);
+    }
 
     internal partial class Hm
     {
         // アンマネージドライブラリの遅延での読み込み。C++のLoadLibraryと同じことをするため
         // これをする理由は、このhmPyとHideamru.exeが異なるディレクトリに存在する可能性があるため、
         // C#風のDllImportは成立しないからだ。
-        internal sealed class UnManagedDll : IDisposable
+        internal sealed class UnManagedDll : NativeMethods, IDisposable
         {
-            [DllImport("kernel32")]
-            private static extern IntPtr LoadLibrary(string lpFileName);
-            [DllImport("kernel32")]
-            private static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
-            [DllImport("kernel32")]
-            private static extern bool FreeLibrary(IntPtr hModule);
 
             IntPtr moduleHandle;
-
             public UnManagedDll(string lpFileName)
             {
                 moduleHandle = LoadLibrary(lpFileName);
