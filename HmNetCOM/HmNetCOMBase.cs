@@ -31,7 +31,7 @@ namespace HmNetCOM
             bool X64MACRO() { return true; }
 #else
             bool X64MACRO();
-    #endif
+#endif
         }
 
         static Hm()
