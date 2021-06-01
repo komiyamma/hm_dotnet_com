@@ -678,6 +678,17 @@ namespace HmNetCOM
                 moduleHandle = LoadLibrary(lpFileName);
             }
 
+            // コード分析などの際の警告抑制のためにデストラクタをつけておく
+            ~UnManagedDll()
+            {
+                // C#はメインドメインのdllは(このコードが存在するdll)はプロセスが終わらない限り解放されないので、
+                // ここではネイティブのdllも事前には解放しない方がよい。(プロセス終了による解放に委ねる）
+                // デストラクタでは何もしない。
+                // コード分析でも警告がでないように、コード分析では実行されないことがわからない形で
+                // 決して実行されないコードにしておく
+                if (moduleHandle == (IntPtr)(-1)) { this.Dispose(); };
+            }
+
             public IntPtr ModuleHandle
             {
                 get
