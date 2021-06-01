@@ -1,4 +1,0 @@
-G:\repogitory\hidemaru_dotnet_com\HmNetCOM\obj\Debug\netstandard2.0\HmNetCOM.csproj.AssemblyReference.cache
-G:\repogitory\hidemaru_dotnet_com\HmNetCOM\obj\Debug\netstandard2.0\HmNetCOM.AssemblyInfoInputs.cache
-G:\repogitory\hidemaru_dotnet_com\HmNetCOM\obj\Debug\netstandard2.0\HmNetCOM.AssemblyInfo.cs
-G:\repogitory\hidemaru_dotnet_com\HmNetCOM\obj\Debug\netstandard2.0\HmNetCOM.csproj.CoreCompileInputs.cache

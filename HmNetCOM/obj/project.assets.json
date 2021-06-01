@@ -184,7 +184,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "2.0.0.1",
+    "version": "2.0.1.1",
     "restore": {
       "projectUniqueName": "G:\\repogitory\\hidemaru_dotnet_com\\HmNetCOM\\HmNetCOM.csproj",
       "projectName": "HmNetCOM",
