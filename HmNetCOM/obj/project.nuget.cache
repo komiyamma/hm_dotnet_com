@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "RSri3yqz5lOHBtpLfR90QZqyv/h0C4/5TvyJs65jV1SwAwGqLwdqJiY1/tY9z0mrQ3n9Q+5ZiJN07dSOEzKXXQ==",
+  "success": true,
+  "projectFilePath": "g:\\repogitory\\hidemaru_dotnet_com\\HmNetCOM\\HmNetCOM.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
