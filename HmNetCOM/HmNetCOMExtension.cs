@@ -1,5 +1,5 @@
 ﻿/*
- * HmNetCOM ver 2.011
+ * HmNetCOM ver 2.021
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -248,7 +248,7 @@ namespace HmNetCOM
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
-            var result = Hm.Macro.Eval($@"
+            var result = Hm.Macro.Exec.Eval($@"
                 #_COM_NET_PINVOKE_METHOD_CALL = createobject(@""{myTargetDllFullPath}"", @""{myTargetClass}"" );
                 #_COM_NET_PINVOKE_METHOD_CALL_RESULT = member(#_COM_NET_PINVOKE_METHOD_CALL, ""MethodToDll"", @""{dllfullpath}"", @""{typefullname}"", @""{methodname}"",  R""MACRO_OF_SCOPENAME({scopename})MACRO_OF_SCOPENAME"");
                 releaseobject(#_COM_NET_PINVOKE_METHOD_CALL);
@@ -385,8 +385,13 @@ namespace HmNetCOM
                     else if (delegate_method.Method.IsStatic && (delegate_method.Method.IsPublic || delegate_method.Method.IsAssembly))
                     {
                         var ret = HmMacroCOMVar.BornMacroScopeMethod(parameter, delegate_method.Method.DeclaringType.Assembly.Location, delegate_method.Method.DeclaringType.FullName, delegate_method.Method.Name);
-                        var result = new TResult(ret.Result, ret.Message, ret.Error);
-                        return result;
+                        if (ret.Result > 0) {
+                            var result = new TResult(ret.Result, message_parameter, ret.Error);
+                            return result;
+                        } else {
+                            var result = new TResult(ret.Result, ret.Message, ret.Error);
+                            return result;
+                        }
                     }
                     else if (!delegate_method.Method.IsStatic)
                     {
