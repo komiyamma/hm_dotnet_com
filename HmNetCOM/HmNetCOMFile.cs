@@ -1,5 +1,5 @@
 ﻿/*
- * HmNetCOM ver 2.021
+ * HmNetCOM ver 2.022
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -150,6 +150,11 @@ namespace HmNetCOM
 
             };
 
+            /// <summary>
+            /// 秀丸でファイルのエンコードを取得する
+            /// （秀丸に設定されている内容に従う）
+            /// </summary>
+            /// <returns>IEncoding型のオブジェクト。MsCodePage と HmEncode のプロパティを得られる。</returns>
             public static IEncoding GetEncoding(string filepath)
             {
                 int hm_encode = GetHmEncode(filepath);
@@ -359,7 +364,12 @@ namespace HmNetCOM
                     this.Close();
                 }
             }
-            // ファイルを開いて情報を得る
+
+            /// <summary>
+            /// 秀丸でファイルのエンコードを判断し、その判断結果に基づいてファイルのテキスト内容を取得する。
+            /// （秀丸に設定されている内容に従う）
+            /// </summary>
+            /// <returns>IHidemaruStreamReader型のオブジェクト。</returns>
             public static IHidemaruStreamReader Open(string filepath, int hm_encode = -1)
             {
                 if (System.IO.File.Exists(filepath) == false)

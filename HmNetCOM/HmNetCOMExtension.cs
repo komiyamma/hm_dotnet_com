@@ -1,5 +1,5 @@
 ﻿/*
- * HmNetCOM ver 2.021
+ * HmNetCOM ver 2.022
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -880,14 +880,15 @@ namespace HmNetCOM
             }
 
 
-            /// <summary>
-            /// 対象の「秀丸マクロ変数名」への読み書き
-            /// </summary>
-            /// <param name = "var_name">書き込みの場合は、変数の値</param>
-            /// <returns>読み取りの場合は、対象の変数の値</returns>
             internal static TMacroVar Var = new TMacroVar();
             internal sealed class TMacroVar
             {
+	            /// <summary>
+	            /// 対象の「秀丸マクロ変数名」への読み書き
+	            /// </summary>
+	            /// <param name = "var_name">変数のシンボル名</param>
+	            /// <param name = "value">書き込みの場合、代入する値</param>
+	            /// <returns>読み取りの場合は、対象の変数の値</returns>
                 public Object this[String var_name]
                 {
                     get
