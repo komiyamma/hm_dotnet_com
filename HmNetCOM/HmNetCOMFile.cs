@@ -292,7 +292,7 @@ namespace HmNetCOM
                 }
             }
 
-            public class Encoding : IEncoding
+            private class Encoding : IEncoding
             {
                 private int m_hm_encode;
                 private int m_ms_codepage;
@@ -305,7 +305,7 @@ namespace HmNetCOM
                 public int MsCodePage { get { return this.m_ms_codepage; } }
             }
 
-            public class HidemaruStreamReader : IHidemaruStreamReader
+            private class HidemaruStreamReader : IHidemaruStreamReader
             {
                 String m_path;
 
@@ -369,6 +369,8 @@ namespace HmNetCOM
             /// 秀丸でファイルのエンコードを判断し、その判断結果に基づいてファイルのテキスト内容を取得する。
             /// （秀丸に設定されている内容に従う）
             /// </summary>
+	        /// <param name = "filepath">読み込み対象のファイルのパス</param>
+	        /// <param name = "hm_encode">エンコード(秀丸マクロの「encode」の値)が分かっているならば指定する、指定しない場合秀丸APIの自動判定に任せる。</param>
             /// <returns>IHidemaruStreamReader型のオブジェクト。</returns>
             public static IHidemaruStreamReader Open(string filepath, int hm_encode = -1)
             {
