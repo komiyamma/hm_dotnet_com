@@ -4,14 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>HmNetCOM</AssemblyName>
     <RootNamespace>Hidemaru</RootNamespace>
-    <Version>2.0.2.3</Version>
+    <Version>2.0.2.4</Version>
     <Copyright>Copyright © 2021 Akitsugu Komiyama</Copyright>
     <NeutralLanguage>ja-JP</NeutralLanguage>
     <PackageId>HmNetCOM</PackageId>
     <Authors>Akitsugu Komiyama</Authors>
     <Company>Komiyamma</Company>
     <Product>HmNetCOM</Product>
-    <AssemblyVersion>2.0.2.3</AssemblyVersion>
+    <AssemblyVersion>2.0.2.4</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,6 +34,15 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="HmNetCOM.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HmNetCOM.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 

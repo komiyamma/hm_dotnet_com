@@ -768,6 +768,7 @@ namespace HmNetCOM
 
                             if (success == true)
                             {
+                                itmp = HmClamp<Int32>(itmp, Int32.MinValue, Int32.MaxValue);
                                 normalized_arg = itmp;
                             }
 
@@ -775,9 +776,18 @@ namespace HmNetCOM
                             {
                                 // 次に少数でトライ
                                 Double dtmp = 0;
-                                success = Double.TryParse(value.ToString(), out dtmp);
+                                if (IsDoubleNumeric(value))
+                                {
+                                    dtmp = (double)value;
+                                    success = true;
+                                }
+                                else
+                                {
+                                    success = double.TryParse(value.ToString(), out dtmp);
+                                }
                                 if (success)
                                 {
+                                    dtmp = HmClamp<double>(dtmp, Int32.MinValue, Int32.MaxValue);
                                     normalized_arg = (Int32)(dtmp);
                                 }
 
@@ -797,6 +807,7 @@ namespace HmNetCOM
 
                             if (success == true)
                             {
+                                itmp = HmClamp<Int64>(itmp, Int64.MinValue, Int64.MaxValue);
                                 normalized_arg = itmp;
                             }
 
@@ -804,9 +815,18 @@ namespace HmNetCOM
                             {
                                 // 次に少数でトライ
                                 Double dtmp = 0;
-                                success = Double.TryParse(value.ToString(), out dtmp);
+                                if (IsDoubleNumeric(value))
+                                {
+                                    dtmp = (double)value;
+                                    success = true;
+                                }
+                                else
+                                {
+                                    success = double.TryParse(value.ToString(), out dtmp);
+                                }
                                 if (success)
                                 {
+                                    dtmp = HmClamp<double>(dtmp, Int64.MinValue, Int64.MaxValue);
                                     normalized_arg = (Int64)(dtmp);
                                 }
                                 else
@@ -929,6 +949,7 @@ namespace HmNetCOM
 
                             if (success == true)
                             {
+                                itmp = HmClamp<Int32>(itmp, Int32.MinValue, Int32.MaxValue);
                                 result = itmp;
                             }
 
@@ -936,9 +957,18 @@ namespace HmNetCOM
                             {
                                 // 次に少数でトライ
                                 Double dtmp = 0;
-                                success = Double.TryParse(value.ToString(), out dtmp);
+                                if (IsDoubleNumeric(value))
+                                {
+                                    dtmp = (double)value;
+                                    success = true;
+                                }
+                                else
+                                {
+                                    success = double.TryParse(value.ToString(), out dtmp);
+                                }
                                 if (success)
                                 {
+                                    dtmp = HmClamp<double>(dtmp, Int32.MinValue, Int32.MaxValue);
                                     result = (Int32)(dtmp);
                                 }
 
@@ -958,6 +988,7 @@ namespace HmNetCOM
 
                             if (success == true)
                             {
+                                itmp = HmClamp<Int64>(itmp, Int64.MinValue, Int64.MaxValue);
                                 result = itmp;
                             }
 
@@ -965,9 +996,18 @@ namespace HmNetCOM
                             {
                                 // 次に少数でトライ
                                 Double dtmp = 0;
-                                success = Double.TryParse(value.ToString(), out dtmp);
+                                if (IsDoubleNumeric(value))
+                                {
+                                    dtmp = (double)value;
+                                    success = true;
+                                }
+                                else
+                                {
+                                    success = double.TryParse(value.ToString(), out dtmp);
+                                }
                                 if (success)
                                 {
+                                    dtmp = HmClamp<double>(dtmp, Int64.MinValue, Int64.MaxValue);
                                     result = (Int64)(dtmp);
                                 }
                                 else
