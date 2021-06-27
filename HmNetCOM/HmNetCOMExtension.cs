@@ -576,6 +576,23 @@ namespace HmNetCOM
             /// <returns>(Result, Args, Message, Error)</returns>
             public static IFunctionResult Function(string func_name, params object[] args)
             {
+				return _AsFunction<Object>(func_name, args);
+            }
+
+            /// <summary>
+            /// 秀丸マクロの「関数」を実行。関数だけだと返り値が不明な場合にこの<T>付きを使用する。
+            /// </summary>
+            /// <param name = "func_name">関数名</param>
+            /// <param name = "args">関数の引数</param>
+            /// <typeparam name="T">String | int | long | IntPtr | double。関数単体だけ確定されない返り値の型を「文字列タイプ」か「整数タイプ」かに振り分け直す。</typeparam>
+            /// <returns>(Result, Args, Message, Error)</returns>
+            public static IFunctionResult Function<T>(string func_name, params object[] args)
+            {
+				return _AsFunction<T>(func_name, args);
+            }
+
+            public static IFunctionResult _AsFunction<T>(string func_name, params object[] args)
+            {
                 string funcname = func_name;
                 if (funciton_base_random == 0)
                 {
@@ -595,8 +612,26 @@ namespace HmNetCOM
                 // それを「,」で繋げる
                 string args_string = String.Join(", ", arg_keys);
                 // それを指定の「関数」で実行する形
-                string expression = $"{funcname}({args_string})";
+                string expression = "";
 
+                string result_temp = "";
+                Macro.IResult eval_result = new TResult(-1, "", null);
+                if (typeof(T)==typeof(int) || typeof(T)==typeof(long) || typeof(T)==typeof(IntPtr) || typeof(T) == typeof(double))
+                {
+                    expression = $"{funcname}({args_string})";
+                    result_temp = "##_tmp_dll_expression_ret";
+                    string eval_expresson = result_temp + " = " + expression + ";\n";
+                    eval_result = Eval(eval_expresson);
+                    expression = result_temp;
+                } else if (typeof(T)==typeof(String)) {
+                    expression = $"{funcname}({args_string})";
+                    result_temp = "$$_tmp_dll_expression_ret";
+                    string eval_expresson = result_temp + " = " + expression + ";\n";
+                    eval_result = Eval(eval_expresson);
+                    expression = result_temp;
+                } else {
+                    expression = $"{funcname}({args_string})";
+                }
                 //----------------------------------------------------------------
                 TFunctionResult result = new TFunctionResult(null, "", null, new List<Object>());
                 result.Args = new List<object>();
@@ -636,6 +671,21 @@ namespace HmNetCOM
                     result.Error = e;
                 }
 
+                if (result_temp.StartsWith("#")) {
+                    Macro.Var[result_temp] = 0;
+                    if (eval_result?.Error != null) {
+                        result.Result = null;
+                        result.Message = "";
+                        result.Error = eval_result.Error;
+                    }
+                } else if (result_temp.StartsWith("$")) {
+                    Macro.Var[result_temp] = "";
+                    if (eval_result?.Error != null) {
+                        result.Result = null;
+                        result.Message = "";
+                        result.Error = eval_result.Error;
+                    }
+                }
 
                 // 使ったので削除
                 for (int ix = 0; ix < arg_list.Count; ix++)
