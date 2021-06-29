@@ -369,7 +369,7 @@ namespace HmNetCOM
 	            /// 指定のC#のstaticメソッドを「新たなマクロ実行空間」として呼び出す
 	            /// </summary>
 	            /// <param name = "message_parameter">文字列パラメータ</param>
-	            /// <param name = "delegate_method">呼び出したいC#メソッド「public(or internal) methodname(string message_parameter)の型に従うメソッドであること</param>
+	            /// <param name = "delegate_method">呼び出したいC#メソッド「public methodname(string message_parameter)の型」に従うメソッドであること</param>
 	            /// <returns>(Result, Message, Error)</returns>
                 public static IResult Method(string message_parameter, Delegate delegate_method)
                 {
