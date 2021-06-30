@@ -1,5 +1,5 @@
 ﻿/*
- * HmNetCOM ver 2.025
+ * HmNetCOM ver 2.026
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -57,7 +57,7 @@ namespace HmNetCOM
             System.Diagnostics.Trace.WriteLine("名前空間.クラス名:" + class_name);
             System.Diagnostics.Trace.WriteLine("メソッド名       :" + method_name);
         }
-        public static void TraceExceptionInfo(Exception e)
+        private static void TraceExceptionInfo(Exception e)
         {
             System.Diagnostics.Trace.WriteLine(e.GetType());
             System.Diagnostics.Trace.WriteLine(e.Message);
