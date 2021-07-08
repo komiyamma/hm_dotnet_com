@@ -1,8 +1,8 @@
 # Hm.NetCOM
 
 Hm.NetCOMとは、秀丸マクロの「COM」関連機能を用い、
-- .NET5
-- .NET6
+- .NET 6.0
+- .NET 5.0
 - .NET Core3.1
 - .NET Framework 4.x
 
