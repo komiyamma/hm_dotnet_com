@@ -3,7 +3,7 @@
 Hm.NetCOMとは、秀丸マクロの「COM」関連機能を用い、
 - .NET 6.0
 - .NET 5.0
-- .NET Core3.1
+- .NET Core 3.1
 - .NET Framework 4.x
 
 を「C#経由で秀丸マクロ」で利用するためのライブラリです。  
