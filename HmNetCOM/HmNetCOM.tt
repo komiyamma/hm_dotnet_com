@@ -25,7 +25,7 @@
 <#= source1 #>
 
 <#
- var lines2 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMFile.cs"));
+ var lines2 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMMacro.cs"));
  string source2 = "";
  foreach(var line in lines2) {
      if (line.StartsWith ("using ")) {
@@ -38,16 +38,42 @@
 <#= source2 #>
 
 <#
- var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
- var lines3 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMExtension.cs"));
+ var lines3 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMEdit.cs"));
  string source3 = "";
  foreach(var line in lines3) {
      if (line.StartsWith ("using ")) {
      } else {
-        string line3 = line.Replace("HmMacroCOMVarGUID", HmMacroCOMVarGUID);
-        source3 += line3 + "\r\n";
+        source3 += line + "\r\n";
      }
  }
 #>
 
 <#= source3 #>
+
+<#
+ var lines4 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMFile.cs"));
+ string source4 = "";
+ foreach(var line in lines4) {
+     if (line.StartsWith ("using ")) {
+     } else {
+        source4 += line + "\r\n";
+     }
+ }
+#>
+
+<#= source4 #>
+
+<#
+ var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
+ var lines5 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMMacroExtension.cs"));
+ string source5 = "";
+ foreach(var line in lines5) {
+     if (line.StartsWith ("using ")) {
+     } else {
+        string line5 = line.Replace("HmMacroCOMVarGUID", HmMacroCOMVarGUID);
+        source5 += line5 + "\r\n";
+     }
+ }
+#>
+
+<#= source5 #>
