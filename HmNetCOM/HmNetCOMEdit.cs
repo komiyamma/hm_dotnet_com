@@ -401,7 +401,7 @@ namespace HmNetCOM
 namespace HmNetCOM
 {
 
-    internal static class HmExtentensions
+    internal static class HmEditExtentensions
     {
         public static void Deconstruct(this Hm.Edit.ICursorPos pos, out int LineNo, out int Column)
         {

@@ -184,3 +184,32 @@ namespace HmNetCOM
     }
 }
 
+namespace HmNetCOM
+{
+
+    internal static class HmMacroExtentensions
+    {
+        public static void Deconstruct(this Hm.Macro.IResult result, out int Result, out Exception Error, out String Message)
+        {
+            Result = result.Result;
+            Error = result.Error;
+            Message = result.Message;
+        }
+
+        public static void Deconstruct(this Hm.Macro.IFunctionResult result, out object Result, out List<Object> Args, out Exception Error, out String Message)
+        {
+            Result = result.Result;
+            Args = result.Args;
+            Error = result.Error;
+            Message = result.Message;
+        }
+
+        public static void Deconstruct(this Hm.Macro.IStatementResult result, out int Result, out List<Object> Args, out Exception Error, out String Message)
+        {
+            Result = result.Result;
+            Args = result.Args;
+            Error = result.Error;
+            Message = result.Message;
+        }
+    }
+}
