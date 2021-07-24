@@ -157,42 +157,43 @@ namespace HmNetCOM
 namespace HmNetCOM
 {
     namespace HmNativeMethods {
-	    internal partial class NativeMethods
-	    {
-	        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-	        protected extern static uint GetModuleFileName(IntPtr hModule, StringBuilder lpFilename, int nSize);
+        internal partial class NativeMethods
+        {
+            [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+            protected extern static uint GetModuleFileName(IntPtr hModule, StringBuilder lpFilename, int nSize);
 
-	        [DllImport("kernel32.dll", SetLastError = true)]
-	        protected extern static IntPtr GlobalLock(IntPtr hMem);
+            [DllImport("kernel32.dll", SetLastError = true)]
+            protected extern static IntPtr GlobalLock(IntPtr hMem);
 
-	        [DllImport("kernel32.dll", SetLastError = true)]
+            [DllImport("kernel32.dll", SetLastError = true)]
 
-	        [return: MarshalAs(UnmanagedType.Bool)]
-	        protected extern static bool GlobalUnlock(IntPtr hMem);
+            [return: MarshalAs(UnmanagedType.Bool)]
+            protected extern static bool GlobalUnlock(IntPtr hMem);
 
-	        [DllImport("kernel32.dll", SetLastError = true)]
-	        protected extern static IntPtr GlobalFree(IntPtr hMem);
+            [DllImport("kernel32.dll", SetLastError = true)]
+            protected extern static IntPtr GlobalFree(IntPtr hMem);
 
-	        [StructLayout(LayoutKind.Sequential)]
-	        protected struct POINT
-	        {
-	            public int X;
-	            public int Y;
-	        }
-	        [DllImport("user32.dll", SetLastError = true)]
-	        [return: MarshalAs(UnmanagedType.Bool)]
-	        protected extern static bool GetCursorPos(out POINT lpPoint);
+            [StructLayout(LayoutKind.Sequential)]
+            protected struct POINT
+            {
+                public int X;
+                public int Y;
+            }
+            [DllImport("user32.dll", SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            protected extern static bool GetCursorPos(out POINT lpPoint);
 
-	        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
-	        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+            [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
+            protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-	        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
-	        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, StringBuilder lParam);
+            [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
+            protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, StringBuilder lParam);
 
-	        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
-	        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, StringBuilder wParam, StringBuilder lParam);
-	    }
-	}
+            [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
+            protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, StringBuilder wParam, StringBuilder lParam);
+        }
+    }
+
     internal partial class Hm : HmNativeMethods.NativeMethods
     {
     }
@@ -200,19 +201,19 @@ namespace HmNetCOM
 
 namespace HmNetCOM
 {
-	namespace HmNativeMethods {
-	    internal partial class NativeMethods
-	    {
-	        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
-	        protected static extern IntPtr LoadLibrary(string lpFileName);
+    namespace HmNativeMethods {
+        internal partial class NativeMethods
+        {
+            [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+            protected static extern IntPtr LoadLibrary(string lpFileName);
 
-	        [DllImport("kernel32", CharSet=CharSet.Ansi, BestFitMapping=false, ExactSpelling=true, SetLastError=true)]
-	        protected static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+            [DllImport("kernel32", CharSet=CharSet.Ansi, BestFitMapping=false, ExactSpelling=true, SetLastError=true)]
+            protected static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
 
-	        [DllImport("kernel32", SetLastError = true)]
-	        protected static extern bool FreeLibrary(IntPtr hModule);
-	    }
-	}
+            [DllImport("kernel32", SetLastError = true)]
+            protected static extern bool FreeLibrary(IntPtr hModule);
+        }
+    }
 
     internal partial class Hm
     {

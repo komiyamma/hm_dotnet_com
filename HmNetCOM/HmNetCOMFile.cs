@@ -369,8 +369,8 @@ namespace HmNetCOM
             /// 秀丸でファイルのエンコードを判断し、その判断結果に基づいてファイルのテキスト内容を取得する。
             /// （秀丸に設定されている内容に従う）
             /// </summary>
-	        /// <param name = "filepath">読み込み対象のファイルのパス</param>
-	        /// <param name = "hm_encode">エンコード(秀丸マクロの「encode」の値)が分かっているならば指定する、指定しない場合秀丸APIの自動判定に任せる。</param>
+            /// <param name = "filepath">読み込み対象のファイルのパス</param>
+            /// <param name = "hm_encode">エンコード(秀丸マクロの「encode」の値)が分かっているならば指定する、指定しない場合秀丸APIの自動判定に任せる。</param>
             /// <returns>IHidemaruStreamReader型のオブジェクト。</returns>
             public static IHidemaruStreamReader Open(string filepath, int hm_encode = -1)
             {

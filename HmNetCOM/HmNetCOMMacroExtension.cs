@@ -266,15 +266,15 @@ namespace HmNetCOM
 
             public static partial class Exec
             {
-	            /// <summary>
-	            /// 指定のC#のstaticメソッドを「新たなマクロ実行空間」として呼び出す
-	            /// </summary>
-	            /// <param name = "message_parameter">文字列パラメータ</param>
-	            /// <param name = "delegate_method">呼び出したいC#メソッド「public methodname(string message_parameter)の型」に従うメソッドであること</param>
-	            /// <returns>(Result, Message, Error)</returns>
+                /// <summary>
+                /// 指定のC#のstaticメソッドを「新たなマクロ実行空間」として呼び出す
+                /// </summary>
+                /// <param name = "message_parameter">文字列パラメータ</param>
+                /// <param name = "delegate_method">呼び出したいC#メソッド「public methodname(string message_parameter)の型」に従うメソッドであること</param>
+                /// <returns>(Result, Message, Error)</returns>
                 public static IResult Method(string message_parameter, Delegate delegate_method)
                 {
-					string parameter = message_parameter;
+                    string parameter = message_parameter;
                     // 渡されたメソッドが自分自身のdllと異なるのはダメ
                     if (delegate_method.Method.DeclaringType.Assembly.Location != System.Reflection.Assembly.GetExecutingAssembly().Location)
                     {
@@ -355,7 +355,7 @@ namespace HmNetCOM
             /// <returns>(Result, Args, Message, Error)</returns>
             internal static IStatementResult Statement(string statement_name, params object[] args)
             {
-				string funcname = statement_name;
+                string funcname = statement_name;
                 if (statement_base_random == 0)
                 {
                     statement_base_random = new System.Random().Next(Int16.MaxValue) + 1;
@@ -477,7 +477,7 @@ namespace HmNetCOM
             /// <returns>(Result, Args, Message, Error)</returns>
             public static IFunctionResult Function(string func_name, params object[] args)
             {
-				return _AsFunction<Object>(func_name, args);
+                return _AsFunction<Object>(func_name, args);
             }
 
             /// <summary>
@@ -489,7 +489,7 @@ namespace HmNetCOM
             /// <returns>(Result, Args, Message, Error)</returns>
             public static IFunctionResult Function<T>(string func_name, params object[] args)
             {
-				return _AsFunction<T>(func_name, args);
+                return _AsFunction<T>(func_name, args);
             }
 
             public static IFunctionResult _AsFunction<T>(string func_name, params object[] args)
@@ -854,12 +854,12 @@ namespace HmNetCOM
             internal static TMacroVar Var = new TMacroVar();
             internal sealed class TMacroVar
             {
-	            /// <summary>
-	            /// 対象の「秀丸マクロ変数名」への読み書き
-	            /// </summary>
-	            /// <param name = "var_name">変数のシンボル名</param>
-	            /// <param name = "value">書き込みの場合、代入する値</param>
-	            /// <returns>読み取りの場合は、対象の変数の値</returns>
+                /// <summary>
+                /// 対象の「秀丸マクロ変数名」への読み書き
+                /// </summary>
+                /// <param name = "var_name">変数のシンボル名</param>
+                /// <param name = "value">書き込みの場合、代入する値</param>
+                /// <returns>読み取りの場合は、対象の変数の値</returns>
                 public Object this[String var_name]
                 {
                     get
