@@ -1,5 +1,5 @@
 ﻿/*
- * HmNetCOM ver 2.031
+ * HmNetCOM ver 2.032
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -21,12 +21,14 @@ namespace HmNetCOM
 
             // OutputPaneから出ている関数群
             private delegate int TOutputPane_Output(IntPtr hHidemaruWindow, byte[] encode_data);
+            private delegate int TOutputPane_OutputW(IntPtr hHidemaruWindow, [MarshalAs(UnmanagedType.LPWStr)] String pwszmsg);
             private delegate int TOutputPane_Push(IntPtr hHidemaruWindow);
             private delegate int TOutputPane_Pop(IntPtr hHidemaruWindow);
             private delegate IntPtr TOutputPane_GetWindowHandle(IntPtr hHidemaruWindow);
             private delegate int TOutputPane_SetBaseDir(IntPtr hHidemaruWindow, byte[] encode_data);
 
             private static TOutputPane_Output pOutputPane_Output;
+            private static TOutputPane_OutputW pOutputPane_OutputW;
             private static TOutputPane_Push pOutputPane_Push;
             private static TOutputPane_Pop pOutputPane_Pop;
             private static TOutputPane_GetWindowHandle pOutputPane_GetWindowHandle;
@@ -47,6 +49,10 @@ namespace HmNetCOM
                     {
                         pOutputPane_SetBaseDir = hmOutputPaneHandle.GetProcDelegate<TOutputPane_SetBaseDir>("SetBaseDir");
                     }
+                    if (Version >= 898)
+                    {
+                        pOutputPane_OutputW = hmOutputPaneHandle.GetProcDelegate<TOutputPane_OutputW>("OutputW");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -63,9 +69,14 @@ namespace HmNetCOM
             {
                 try
                 {
-                    byte[] encode_data = HmOriginalEncodeFunc.EncodeWStringToOriginalEncodeVector(message);
-                    int result = pOutputPane_Output(Hm.WindowHandle, encode_data);
-                    return result;
+    			    if (pOutputPane_OutputW != null) {
+                        int result = pOutputPane_OutputW(Hm.WindowHandle, message);
+                        return result;
+	    		    } else {
+                        byte[] encode_data = HmOriginalEncodeFunc.EncodeWStringToOriginalEncodeVector(message);
+                        int result = pOutputPane_Output(Hm.WindowHandle, encode_data);
+                        return result;
+                    }
                 }
                 catch (Exception e)
                 {
