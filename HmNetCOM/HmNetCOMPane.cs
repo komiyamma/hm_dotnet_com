@@ -253,7 +253,7 @@ namespace HmNetCOM
             /// <summary>
             /// ファイルマネージャ枠のモードの取得
             /// </summary>
-            /// <returns>失敗なら0、成功なら0以外</returns>
+            /// <returns>モードの値</returns>
             public static int GetMode()
             {
                 try

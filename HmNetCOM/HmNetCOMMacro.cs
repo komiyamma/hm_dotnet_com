@@ -21,7 +21,6 @@ namespace HmNetCOM
             /// マクロを実行中か否かを判定する
             /// </summary>
             /// <returns>実行中ならtrue, そうでなければfalse</returns>
-
             public static bool IsExecuting
             {
                 get
@@ -110,7 +109,6 @@ namespace HmNetCOM
                 /// マクロを実行していない時のみ実行可能なメソッド。
                 /// </summary>
                 /// <returns>(Result, Message, Error)</returns>
-
                 public static IResult File(string filepath)
                 {
                     TResult result;

@@ -108,7 +108,7 @@ namespace HmNetCOM
             /// <summary>
             /// 現在、カーソルがある行(エディタ的)のテキスト内容を返す。
             /// </summary>
-            /// <returns>選択中のテキスト内容</returns>
+            /// <returns>カーソルがある行のテキスト内容</returns>
             public static string LineText
             {
                 get
