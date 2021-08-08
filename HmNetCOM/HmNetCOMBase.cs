@@ -1,5 +1,4 @@
 ﻿/*
- * HmNetCOM ver 2.032
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -93,15 +92,34 @@ namespace HmNetCOM
     internal partial class Hm
     {
         // 秀丸本体から出ている関数群
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TGetCurrentWindowHandle();
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TGetTotalTextUnicode();
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TGetLineTextUnicode(int nLineNo);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TGetSelectedTextUnicode();
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TGetCursorPosUnicode(out int pnLineNo, out int pnColumn);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TGetCursorPosUnicodeFromMousePos(IntPtr lpPoint, out int pnLineNo, out int pnColumn);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TEvalMacro([MarshalAs(UnmanagedType.LPWStr)] String pwsz);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TCheckQueueStatus();
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TAnalyzeEncoding([MarshalAs(UnmanagedType.LPWStr)] String pwszFileName, IntPtr lParam1, IntPtr lParam2);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TLoadFileUnicode([MarshalAs(UnmanagedType.LPWStr)] String pwszFileName, int nEncode, ref int pcwchOut, IntPtr lParam1, IntPtr lParam2);
 
         // 秀丸本体から出ている関数群
@@ -207,7 +225,7 @@ namespace HmNetCOM
             [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
             protected static extern IntPtr LoadLibrary(string lpFileName);
 
-            [DllImport("kernel32", CharSet=CharSet.Ansi, BestFitMapping=false, ExactSpelling=true, SetLastError=true)]
+            [DllImport("kernel32", CharSet = CharSet.Ansi, BestFitMapping=false, ExactSpelling=true, SetLastError=true)]
             protected static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
 
             [DllImport("kernel32", SetLastError = true)]

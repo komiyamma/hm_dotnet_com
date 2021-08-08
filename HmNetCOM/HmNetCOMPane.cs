@@ -1,5 +1,4 @@
 ﻿/*
- * HmNetCOM ver 2.032
  * Copyright (C) 2021 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -20,11 +19,22 @@ namespace HmNetCOM
             private static UnManagedDll hmOutputPaneHandle = null;
 
             // OutputPaneから出ている関数群
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TOutputPane_Output(IntPtr hHidemaruWindow, byte[] encode_data);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TOutputPane_OutputW(IntPtr hHidemaruWindow, [MarshalAs(UnmanagedType.LPWStr)] String pwszmsg);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TOutputPane_Push(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TOutputPane_Pop(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate IntPtr TOutputPane_GetWindowHandle(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TOutputPane_SetBaseDir(IntPtr hHidemaruWindow, byte[] encode_data);
 
             private static TOutputPane_Output pOutputPane_Output;
@@ -188,13 +198,28 @@ namespace HmNetCOM
             private static UnManagedDll hmExplorerPaneHandle = null;
 
             // ExplorerPaneから出ている関数群
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TExplorerPane_SetMode(IntPtr hHidemaruWindow, IntPtr mode);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TExplorerPane_GetMode(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TExplorerPane_LoadProject(IntPtr hHidemaruWindow, byte[] encode_project_file_path);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TExplorerPane_SaveProject(IntPtr hHidemaruWindow, byte[] encode_project_file_path);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate IntPtr TExplorerPane_GetProject(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate IntPtr TExplorerPane_GetWindowHandle(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TExplorerPane_GetUpdated(IntPtr hHidemaruWindow);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate IntPtr TExplorerPane_GetCurrentDir(IntPtr hHidemaruWindow);
 
             private static TExplorerPane_SetMode pExplorerPane_SetMode;
