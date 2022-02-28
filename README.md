@@ -7,6 +7,7 @@
 ![.NET 5.0](https://img.shields.io/badge/.NET-v5.0-6479ff.svg)
 ![.NET 6.0](https://img.shields.io/badge/.NET-v6.0-6479ff.svg)
 ![.NET Core 3.1](https://img.shields.io/badge/.NET_Core-v3.1-6479ff.svg)
+![C＃](https://img.shields.io/badge/C＃-v7.3_over-6479ff.svg)
 
 
 Hm.NetCOMとは、秀丸マクロの「COM (createobject)」関連機能を用い、
