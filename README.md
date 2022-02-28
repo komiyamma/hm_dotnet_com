@@ -9,7 +9,7 @@
 ![.NET Core 3.1](https://img.shields.io/badge/.NET_Core-v3.1-6479ff.svg)
 
 
-Hm.NetCOMとは、秀丸マクロの「COM」関連機能を用い、
+Hm.NetCOMとは、秀丸マクロの「COM (createobject)」関連機能を用い、
 - .NET 6.0
 - .NET 5.0
 - .NET Core 3.1
