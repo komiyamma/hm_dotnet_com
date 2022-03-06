@@ -4,8 +4,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Hidemaru 8.98](https://img.shields.io/badge/Hidemaru-v8.98-6479ff.svg)
 ![.NET Framework 4.8](https://img.shields.io/badge/.NET_Framework-v4.8-6479ff.svg)
-![.NET 5.0](https://img.shields.io/badge/.NET-v5.0-6479ff.svg)
-![.NET 6.0](https://img.shields.io/badge/.NET-v6.0-6479ff.svg)
+![.NET 5.0 | 6.0 | 7.0](https://img.shields.io/badge/.NET-v5.0_|_v6.0_|_v7.0-6479ff.svg)
 ![.NET Core 3.1](https://img.shields.io/badge/.NET_Core-v3.1-6479ff.svg)
 ![C＃](https://img.shields.io/badge/C＃-v7.3_over-6479ff.svg)
 
