@@ -22,8 +22,8 @@
     <copyright>Copyright (C) 2021 Akitsugu Komiyama</copyright>
     <tags>C# Hidemaru 秀丸 Library Macros</tags>
     <language>ja-JP</language>
-    <dependencies>
-      <group targetFramework="netstandard2.0" />
-    </dependencies>
+    <contentFiles>
+      <files include="**/HmNetCOM.tt" buildAction="None" />
+    </contentFiles>
   </metadata>
 </package>
