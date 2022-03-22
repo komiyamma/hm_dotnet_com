@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Hm.NetCOM</id>
+    <title>Hm.NetCOM</title>
+    <version>2.0.4.1</version>
+    <authors>Akitsugu Komiyama</authors>
+    <owners>Akitsugu Komiyama</owners>
+    <icon>icon.png</icon>
+    <license type="expression">MIT</license>
+    <projectUrl>https://秀丸マクロ.net/?page=nobu_tool_hm_dotnet_pinvoke</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>「秀丸マクロ」と「C#」と「.NET6｜.NET5｜.NET4」をシームレスに扱えるようにするライブラリ。createobject経由。</summary>
+    <description>Hm.NetCOMとは、秀丸マクロの「COM」関連機能を用い、
+    ・ .NET 6.0
+    ・ .NET 5.0
+    ・ .NET Core 3.1
+    ・ .NET Framework 4.x
+    を「C#経由で」で利用するためのライブラリです。
+    </description>
+    <releaseNotes>2.0.4.1: 初パッケージ化</releaseNotes>
+    <copyright>Copyright (C) 2021 Akitsugu Komiyama</copyright>
+    <tags>C# Hidemaru 秀丸 Library Macros</tags>
+    <language>ja-JP</language>
+    <dependencies>
+      <group targetFramework="netstandard2.0" />
+    </dependencies>
+  </metadata>
+</package>
