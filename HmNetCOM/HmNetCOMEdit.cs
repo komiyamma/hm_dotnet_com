@@ -286,6 +286,34 @@ namespace HmNetCOM
                     return null;
                 }
             }
+
+            /// <summary>
+            /// 現在開いている編集エリアで、文字列の編集や何らかの具体的操作を行ったかチェックする。マクロ変数のupdatecount相当
+            /// </summary>
+            /// <returns>一回の操作でも数カウント上がる。32bitの値を超えると一周する。初期値は1以上。</returns>
+
+            public static int UpdateCount
+            {
+                get
+                {
+                    if (Version < 912.98)
+                    {
+                        throw new MissingMethodException("Hidemaru_Edit_UpdateCount_Exception");
+                    }
+                    IntPtr hWndHidemaru = WindowHandle;
+                    if (hWndHidemaru != IntPtr.Zero)
+                    {
+                        const int WM_USER = 0x400;
+                        const int WM_HIDEMARUINFO = WM_USER + 181;
+                        const int HIDEMARUINFO_GETUPDATECOUNT = 7;
+
+                        IntPtr updatecount = SendMessage(hWndHidemaru, WM_HIDEMARUINFO, (IntPtr)HIDEMARUINFO_GETUPDATECOUNT, IntPtr.Zero);
+                        return (int)updatecount;
+                    }
+                    return -1;
+                }
+            }
+
         }
     }
 }
