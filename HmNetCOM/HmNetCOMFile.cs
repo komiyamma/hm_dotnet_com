@@ -1,8 +1,7 @@
 ﻿/*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
-
 
 using System;
 using System.IO;

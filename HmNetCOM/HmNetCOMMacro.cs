@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -38,77 +38,100 @@ namespace HmNetCOM
                 }
             }
 
-            private static int SetStaticVariable(String symbolname, String value, int sharedMemoryFlag)
-            {
-                if (Version < 915)
+
+            /// <summary>
+            /// マクロの静的な変数
+            /// </summary>
+            public static partial class StaticVar {
+
+                /// <summary>
+                /// マクロの静的な変数の値(文字列)を取得する
+                /// </summary>
+                /// <param name = "name">変数名</param>
+                /// <param name = "sharedflag">共有フラグ</param>
+                /// <returns>対象の静的変数名(name)に格納されている文字列</returns>
+                public static string Get(string name, int sharedflag)
                 {
-                    throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                    return GetStaticVariable(name, sharedflag);
                 }
-                try
+
+                /// <summary>
+                /// マクロの静的な変数へと値(文字列)を設定する
+                /// </summary>
+                /// <param name = "name">変数名</param>
+                /// <param name = "value">設定する値(文字列)</param>
+                /// <param name = "sharedflag">共有フラグ</param>
+                /// <returns>取得に成功すれば真、失敗すれば偽が返る</returns>
+                public static bool Set(string name, string value, int sharedflag)
                 {
-                    if (pSetStaticVariable != null)
+                    var ret = SetStaticVariable(name, value, sharedflag);
+                    if (ret != 0)
                     {
+                        return true;
+                    }
+                    return false;
+                }
+
+                private static int SetStaticVariable(String symbolname, String value, int sharedMemoryFlag)
+                {
+                    try
+                    {
+                        if (Version < 915)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                        }
+                        if (pSetStaticVariable == null)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                        }
+
                         return pSetStaticVariable(symbolname, value, sharedMemoryFlag);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                        System.Diagnostics.Trace.WriteLine(e.Message);
+                        throw;
                     }
                 }
-                catch (Exception e)
-                {
-                    System.Diagnostics.Trace.WriteLine(e.Message);
-                    throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
-                }
-            }
 
-            private static string GetStaticVariable(String symbolname, int sharedMemoryFlag)
-            {
-                if (Version < 915)
+                private static string GetStaticVariable(String symbolname, int sharedMemoryFlag)
                 {
-                    throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
-                }
-                try
-                {
-                    if (pGetStaticVariable != null)
+                    try
                     {
-                        string staticText = "";
-                        try
+                        if (Version < 915)
                         {
-                            IntPtr hGlobal = pGetStaticVariable(symbolname, sharedMemoryFlag);
-                            if (hGlobal == IntPtr.Zero)
-                            {
-                                new InvalidOperationException("Hidemaru_Macro_GetStaticVariable_Exception");
-                            }
+                            throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                        }
+                        if (pGetStaticVariable == null)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                        }
 
-                            var pwsz = GlobalLock(hGlobal);
-                            if (pwsz != IntPtr.Zero)
-                            {
-                                staticText = Marshal.PtrToStringUni(pwsz);
-                                GlobalUnlock(hGlobal);
-                            }
-                            GlobalFree(hGlobal);
-                        }
-                        catch (Exception)
+                        string staticText = "";
+
+                        IntPtr hGlobal = pGetStaticVariable(symbolname, sharedMemoryFlag);
+                        if (hGlobal == IntPtr.Zero)
                         {
-                            throw;
+                            new InvalidOperationException("Hidemaru_Macro_GetStaticVariable_Exception");
                         }
+
+                        var pwsz = GlobalLock(hGlobal);
+                        if (pwsz != IntPtr.Zero)
+                        {
+                            staticText = Marshal.PtrToStringUni(pwsz);
+                            GlobalUnlock(hGlobal);
+                        }
+                        GlobalFree(hGlobal);
 
                         return staticText;
-
                     }
-                    else
+                    catch (Exception e)
                     {
-                        throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                        System.Diagnostics.Trace.WriteLine(e.Message);
+                        throw;
                     }
-                }
-                catch (Exception e)
-                {
-                    System.Diagnostics.Trace.WriteLine(e.Message);
-                    throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
                 }
             }
-
 
             /// <summary>
             /// マクロをプログラム内から実行した際の返り値のインターフェイス
@@ -140,7 +163,6 @@ namespace HmNetCOM
             /// マクロ実行中のみ実行可能なメソッド。
             /// </summary>
             /// <returns>(Result, Message, Error)</returns>
-
             public static IResult Eval(String expression)
             {
                 TResult result;
