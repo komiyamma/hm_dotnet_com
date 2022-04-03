@@ -38,6 +38,78 @@ namespace HmNetCOM
                 }
             }
 
+            private static int SetStaticVariable(String symbolname, String value, int sharedMemoryFlag)
+            {
+                if (Version < 915)
+                {
+                    throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                }
+                try
+                {
+                    if (pSetStaticVariable != null)
+                    {
+                        return pSetStaticVariable(symbolname, value, sharedMemoryFlag);
+                    }
+                    else
+                    {
+                        throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Trace.WriteLine(e.Message);
+                    throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                }
+            }
+
+            private static string GetStaticVariable(String symbolname, int sharedMemoryFlag)
+            {
+                if (Version < 915)
+                {
+                    throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                }
+                try
+                {
+                    if (pGetStaticVariable != null)
+                    {
+                        string staticText = "";
+                        try
+                        {
+                            IntPtr hGlobal = pGetStaticVariable(symbolname, sharedMemoryFlag);
+                            if (hGlobal == IntPtr.Zero)
+                            {
+                                new InvalidOperationException("Hidemaru_Macro_GetStaticVariable_Exception");
+                            }
+
+                            var pwsz = GlobalLock(hGlobal);
+                            if (pwsz != IntPtr.Zero)
+                            {
+                                staticText = Marshal.PtrToStringUni(pwsz);
+                                GlobalUnlock(hGlobal);
+                            }
+                            GlobalFree(hGlobal);
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+
+                        return staticText;
+
+                    }
+                    else
+                    {
+                        throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Trace.WriteLine(e.Message);
+                    throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                }
+            }
+
+
             /// <summary>
             /// マクロをプログラム内から実行した際の返り値のインターフェイス
             /// </summary>

@@ -25,13 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="HmNetCOMBase.cs" />
-    <Compile Remove="HmNetCOMEdit.cs" />
     <Compile Remove="HmNetCOMExtension.cs" />
-    <Compile Remove="HmNetCOMFile.cs" />
-    <Compile Remove="HmNetCOMMacro.cs" />
-    <Compile Remove="HmNetCOMMacroExtension.cs" />
-    <Compile Remove="HmNetCOMPane.cs" />
   </ItemGroup>
 
 

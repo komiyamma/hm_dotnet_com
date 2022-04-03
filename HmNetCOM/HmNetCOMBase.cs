@@ -122,6 +122,12 @@ namespace HmNetCOM
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TLoadFileUnicode([MarshalAs(UnmanagedType.LPWStr)] String pwszFileName, int nEncode, ref int pcwchOut, IntPtr lParam1, IntPtr lParam2);
 
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        private delegate IntPtr TGetStaticVariable([MarshalAs(UnmanagedType.LPWStr)] String pwszSymbolName, int sharedMemoryFlag);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        private delegate int TSetStaticVariable([MarshalAs(UnmanagedType.LPWStr)] String pwszSymbolName, [MarshalAs(UnmanagedType.LPWStr)] String pwszValue, int sharedMemoryFlag);
+
         // 秀丸本体から出ている関数群
         private static TGetCurrentWindowHandle pGetCurrentWindowHandle;
         private static TGetTotalTextUnicode pGetTotalTextUnicode;
@@ -133,6 +139,8 @@ namespace HmNetCOM
         private static TCheckQueueStatus pCheckQueueStatus;
         private static TAnalyzeEncoding pAnalyzeEncoding;
         private static TLoadFileUnicode pLoadFileUnicode;
+        private static TGetStaticVariable pGetStaticVariable;
+        private static TSetStaticVariable pSetStaticVariable;
 
         // 秀丸本体のexeを指すモジュールハンドル
         private static UnManagedDll hmExeHandle;
@@ -161,6 +169,12 @@ namespace HmNetCOM
                         pAnalyzeEncoding = hmExeHandle.GetProcDelegate<TAnalyzeEncoding>("Hidemaru_AnalyzeEncoding");
                         pLoadFileUnicode = hmExeHandle.GetProcDelegate<TLoadFileUnicode>("Hidemaru_LoadFileUnicode");
                     }
+                    if (Version >= 915)
+                    {
+                        pGetStaticVariable = hmExeHandle.GetProcDelegate<TGetStaticVariable>("Hidemaru_GetStaticVariable");
+                        pSetStaticVariable = hmExeHandle.GetProcDelegate<TSetStaticVariable>("Hidemaru_SetStaticVariable");
+                    }
+
                 }
                 catch (Exception e)
                 {
