@@ -1,6 +1,6 @@
 /*
- * HmNetCOM ver 2.051
- * Copyright (C) 2021 Akitsugu Komiyama
+ * HmNetCOM ver 2.063
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -66060,7 +66060,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -66177,6 +66177,12 @@ namespace HmNetCOM
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TLoadFileUnicode([MarshalAs(UnmanagedType.LPWStr)] String pwszFileName, int nEncode, ref int pcwchOut, IntPtr lParam1, IntPtr lParam2);
 
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        private delegate IntPtr TGetStaticVariable([MarshalAs(UnmanagedType.LPWStr)] String pwszSymbolName, int sharedMemoryFlag);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        private delegate int TSetStaticVariable([MarshalAs(UnmanagedType.LPWStr)] String pwszSymbolName, [MarshalAs(UnmanagedType.LPWStr)] String pwszValue, int sharedMemoryFlag);
+
         // 秀丸本体から出ている関数群
         private static TGetCurrentWindowHandle pGetCurrentWindowHandle;
         private static TGetTotalTextUnicode pGetTotalTextUnicode;
@@ -66188,6 +66194,8 @@ namespace HmNetCOM
         private static TCheckQueueStatus pCheckQueueStatus;
         private static TAnalyzeEncoding pAnalyzeEncoding;
         private static TLoadFileUnicode pLoadFileUnicode;
+        private static TGetStaticVariable pGetStaticVariable;
+        private static TSetStaticVariable pSetStaticVariable;
 
         // 秀丸本体のexeを指すモジュールハンドル
         private static UnManagedDll hmExeHandle;
@@ -66216,6 +66224,12 @@ namespace HmNetCOM
                         pAnalyzeEncoding = hmExeHandle.GetProcDelegate<TAnalyzeEncoding>("Hidemaru_AnalyzeEncoding");
                         pLoadFileUnicode = hmExeHandle.GetProcDelegate<TLoadFileUnicode>("Hidemaru_LoadFileUnicode");
                     }
+                    if (Version >= 915)
+                    {
+                        pGetStaticVariable = hmExeHandle.GetProcDelegate<TGetStaticVariable>("Hidemaru_GetStaticVariable");
+                        pSetStaticVariable = hmExeHandle.GetProcDelegate<TSetStaticVariable>("Hidemaru_SetStaticVariable");
+                    }
+
                 }
                 catch (Exception e)
                 {
@@ -66341,7 +66355,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -66371,6 +66385,100 @@ namespace HmNetCOM
                     }
 
                     return false;
+                }
+            }
+
+            /// <summary>
+            /// マクロの静的な変数
+            /// </summary>
+            public static partial class StaticVar {
+
+                /// <summary>
+                /// マクロの静的な変数の値(文字列)を取得する
+                /// </summary>
+                /// <param name = "name">変数名</param>
+                /// <param name = "sharedflag">共有フラグ</param>
+                /// <returns>対象の静的変数名(name)に格納されている文字列</returns>
+                public static string Get(string name, int sharedflag)
+                {
+                    return GetStaticVariable(name, sharedflag);
+                }
+
+                /// <summary>
+                /// マクロの静的な変数へと値(文字列)を設定する
+                /// </summary>
+                /// <param name = "name">変数名</param>
+                /// <param name = "value">設定する値(文字列)</param>
+                /// <param name = "sharedflag">共有フラグ</param>
+                /// <returns>取得に成功すれば真、失敗すれば偽が返る</returns>
+                public static bool Set(string name, string value, int sharedflag)
+                {
+                    var ret = SetStaticVariable(name, value, sharedflag);
+                    if (ret != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+
+                private static int SetStaticVariable(String symbolname, String value, int sharedMemoryFlag)
+                {
+                    try
+                    {
+                        if (Version < 915)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                        }
+                        if (pSetStaticVariable == null)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_SetGlobalVariable_Exception");
+                        }
+
+                        return pSetStaticVariable(symbolname, value, sharedMemoryFlag);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Trace.WriteLine(e.Message);
+                        throw;
+                    }
+                }
+
+                private static string GetStaticVariable(String symbolname, int sharedMemoryFlag)
+                {
+                    try
+                    {
+                        if (Version < 915)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                        }
+                        if (pGetStaticVariable == null)
+                        {
+                            throw new MissingMethodException("Hidemaru_Macro_GetStaticVariable_Exception");
+                        }
+
+                        string staticText = "";
+
+                        IntPtr hGlobal = pGetStaticVariable(symbolname, sharedMemoryFlag);
+                        if (hGlobal == IntPtr.Zero)
+                        {
+                            new InvalidOperationException("Hidemaru_Macro_GetStaticVariable_Exception");
+                        }
+
+                        var pwsz = GlobalLock(hGlobal);
+                        if (pwsz != IntPtr.Zero)
+                        {
+                            staticText = Marshal.PtrToStringUni(pwsz);
+                            GlobalUnlock(hGlobal);
+                        }
+                        GlobalFree(hGlobal);
+
+                        return staticText;
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Trace.WriteLine(e.Message);
+                        throw;
+                    }
                 }
             }
 
@@ -66550,7 +66658,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -66994,7 +67102,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -67378,7 +67486,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
 
