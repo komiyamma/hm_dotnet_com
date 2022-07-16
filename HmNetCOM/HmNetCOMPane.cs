@@ -482,6 +482,7 @@ namespace HmNetCOM
             {
                 return ((long)high << 8) | low;
             }
+
             static char GetUnicodeInText(byte[] pchSrc)
             {
                 long value = MakeWord(
