@@ -1,5 +1,5 @@
 /*
- * HmNetCOM ver 2.068
+ * HmNetCOM ver 2.069
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -67975,7 +67975,7 @@ namespace HmNetCOM
                 }
 
                 // ¬”Û‚àŠÜ‚ß‚ÄŒ‹‰Ê‚ğ“ü‚ê‚éB
-                IStatementResult result = new TStatementResult(ret.Result, ret.Message, ret.Error, new List<Object>());
+                IStatementResult result = new TStatementResult(macro_result, ret.Message, ret.Error, new List<Object>());
 
                 // g‚Á‚½‚Ì‚Åíœ
                 for (int ix = 0; ix < arg_list.Count; ix++)
