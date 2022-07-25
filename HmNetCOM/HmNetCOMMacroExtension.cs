@@ -377,9 +377,30 @@ namespace HmNetCOM
 
                 // 実行する
                 IResult ret = Macro.Eval(expression);
- 
+
+                int macro_result = ret.Result;
+                if (ret.Error == null)
+                {
+                    try
+                    {
+                        Object tmp_var = Macro.Var["result"]; // この中のGetMethodで例外が発生する可能性あり
+
+                        if (IntPtr.Size == 4)
+                        {
+                            macro_result = (Int32)tmp_var + 0; // 確実に複製を
+                        }
+                        else
+                        {
+                            Int64 macro_result64 = (Int64)tmp_var + 0; // 確実に複製を
+                            Int32 macro_result32 = (Int32)HmClamp<Int64>(macro_result64, Int32.MinValue, Int32.MaxValue);
+                            macro_result = (Int32)macro_result32;
+                        }
+                    } catch(Exception) {
+                    }
+                }
+
                 // 成否も含めて結果を入れる。
-                IStatementResult result = new TStatementResult(ret.Result, ret.Message, ret.Error, new List<Object>());
+                IStatementResult result = new TStatementResult(macro_result, ret.Message, ret.Error, new List<Object>());
 
                 // 使ったので削除
                 for (int ix = 0; ix < arg_list.Count; ix++)
