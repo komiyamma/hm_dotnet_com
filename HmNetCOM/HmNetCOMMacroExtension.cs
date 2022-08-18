@@ -12,6 +12,14 @@ using System.Runtime.InteropServices;
 
 namespace HmNetCOM
 {
+    // このインターフェイスは秀丸マクロのjsmode(WebView2)でCOMを呼び出す際に必要
+    interface IHmMacroCOMVar
+    {
+        object DllToMacro();
+        int MacroToDll(object variable);
+        int MethodToDll(String dllfullpath, String typefullname, String methodname, String message_param);
+    }
+
     public partial class HmMacroCOMVar {
         private const string HmMacroCOMVarInterface = "HmMacroCOMVarGUID";
     }
@@ -22,7 +30,7 @@ namespace HmNetCOM
     // 秀丸のCOMから呼び出して、マクロ⇔COMといったように、マクロとプログラムで変数値を互いに伝搬する
     [ComVisible(true)]
     [Guid(HmMacroCOMVarInterface)]
-    public partial class HmMacroCOMVar : Hm.IComSupportX64
+    public partial class HmMacroCOMVar : IHmMacroCOMVar, Hm.IComSupportX64
     {
         private static object marcroVar = null;
         public object DllToMacro()

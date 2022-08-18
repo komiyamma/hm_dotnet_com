@@ -67584,6 +67584,14 @@ namespace HmNetCOM
 
 namespace HmNetCOM
 {
+    // このインターフェイスは秀丸マクロのjsmode(WebView2)でCOMを呼び出す際に必要
+    interface IHmMacroCOMVar
+    {
+        object DllToMacro();
+        int MacroToDll(object variable);
+        int MethodToDll(String dllfullpath, String typefullname, String methodname, String message_param);
+    }
+
     public partial class HmMacroCOMVar {
         private const string HmMacroCOMVarInterface = "<#= HmMacroCOMVarGUID #>";
     }
