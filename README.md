@@ -1,6 +1,6 @@
 # Hm.NetCOM
 
-[![Hm.NetCOM v2.0.6](https://img.shields.io/badge/Hm.NetCOM-v2.0.6-6479ff.svg)](https://github.com/komiyamma/hidemaru_dotnet_com/releases)
+[![Hm.NetCOM v2.0.7](https://img.shields.io/badge/Hm.NetCOM-v2.0.7-6479ff.svg)](https://github.com/komiyamma/hidemaru_dotnet_com/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Hidemaru 8.98](https://img.shields.io/badge/Hidemaru-v8.98-6479ff.svg)
 ![.NET Framework 4.8](https://img.shields.io/badge/.NET_Framework-4.7_－_4.8-6479ff.svg)
@@ -10,8 +10,7 @@
 
 
 Hm.NetCOMとは、秀丸マクロの「COM (createobject)」関連機能を用い、
-- .NET 6.0
-- .NET 5.0
+- .NET 5.0 - .NET 7.0
 - .NET Core 3.1
 - .NET Framework 4.x
 
