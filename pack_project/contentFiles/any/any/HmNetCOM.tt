@@ -1,5 +1,5 @@
 /*
- * HmNetCOM ver 2.069
+ * HmNetCOM ver 2.071
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -67604,8 +67604,12 @@ namespace HmNetCOM
 {
     // 秀丸のCOMから呼び出して、マクロ⇔COMといったように、マクロとプログラムで変数値を互いに伝搬する
     [ComVisible(true)]
+#if (NET || NETCOREAPP3_1)
+#else
+    [ClassInterface(ClassInterfaceType.None)]
+#endif
     [Guid(HmMacroCOMVarInterface)]
-    public partial class HmMacroCOMVar : Hm.IComSupportX64
+    public partial class HmMacroCOMVar : IHmMacroCOMVar, Hm.IComSupportX64
     {
         private static object marcroVar = null;
         public object DllToMacro()

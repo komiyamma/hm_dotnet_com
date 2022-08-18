@@ -29,6 +29,10 @@ namespace HmNetCOM
 {
     // 秀丸のCOMから呼び出して、マクロ⇔COMといったように、マクロとプログラムで変数値を互いに伝搬する
     [ComVisible(true)]
+#if (NET || NETCOREAPP3_1)
+#else
+    [ClassInterface(ClassInterfaceType.None)]
+#endif
     [Guid(HmMacroCOMVarInterface)]
     public partial class HmMacroCOMVar : IHmMacroCOMVar, Hm.IComSupportX64
     {
