@@ -3,7 +3,7 @@
   <metadata>
     <id>HmNetCOM</id>
     <title>Hm.NetCOM</title>
-    <version>2.0.7.1</version>
+    <version>2.0.7.2</version>
     <authors>Akitsugu Komiyama</authors>
     <owners>Akitsugu Komiyama</owners>
     <icon>icon.png</icon>
@@ -17,7 +17,7 @@
     ・ .NET Framework 4.x
     を「C#経由で」で利用するためのライブラリです。
     </description>
-    <releaseNotes>Hm.Macro.Statement の返り値において、例外がない場合は、resultの値をResultプロパティに格納するようにした。</releaseNotes>
+    <releaseNotes>SMALLSIZEという定数を定義しておくと、ファイルサイズを非常に小さくできるようにした。(特定の数個メソッドはやや速度が落ちる)</releaseNotes>
     <copyright>Copyright (C) 2021-2022 Akitsugu Komiyama</copyright>
     <tags>C# Hidemaru 秀丸 Library Macros</tags>
     <language>ja-JP</language>

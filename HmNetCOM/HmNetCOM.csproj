@@ -17,11 +17,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;SMALLFILESIZE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;BUILD_DLL</DefineConstants>
+    <DefineConstants>TRACE;BUILD_DLL;SMALLFILESIZE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
