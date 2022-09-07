@@ -1,5 +1,5 @@
 /*
- * HmNetCOM ver 2.074
+ * HmNetCOM ver 2.075
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -23,7 +23,7 @@ namespace HmNetCOM
         {
             private static UnManagedDll hmOutputPaneHandle = null;
 
-            // OutputPane‚©‚ço‚Ä‚¢‚éŠÖ”ŒQ
+            // OutputPaneã‹ã‚‰å‡ºã¦ã„ã‚‹é–¢æ•°ç¾¤
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TOutputPane_Output(IntPtr hHidemaruWindow, byte[] encode_data);
 
@@ -76,10 +76,10 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒAƒEƒgƒvƒbƒg˜g‚Ö‚Ì•¶š—ñ‚Ìo—ÍB
-            /// ‰üs‚·‚é‚É‚Íu\r\nv‚Æ‚¢‚Á‚½‚æ‚¤‚Éu\rv‚à•K—vB
+            /// ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã¸ã®æ–‡å­—åˆ—ã®å‡ºåŠ›ã€‚
+            /// æ”¹è¡Œã™ã‚‹ã«ã¯ã€Œ\r\nã€ã¨ã„ã£ãŸã‚ˆã†ã«ã€Œ\rã€ã‚‚å¿…è¦ã€‚
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int Output(string message)
             {
                 try
@@ -102,30 +102,30 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒAƒEƒgƒvƒbƒg˜g‚É‚ ‚é•¶š—ñ‚Ìˆê‘Ş”ğ
+            /// ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã«ã‚ã‚‹æ–‡å­—åˆ—ã®ä¸€æ™‚é€€é¿
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int Push()
             {
                 return pOutputPane_Push(Hm.WindowHandle); ;
             }
 
             /// <summary>
-            /// Push‚É‚æ‚Á‚Äˆê‘Ş”ğ‚µ‚½•¶š—ñ‚Ì•œŒ³
+            /// Pushã«ã‚ˆã£ã¦ä¸€æ™‚é€€é¿ã—ãŸæ–‡å­—åˆ—ã®å¾©å…ƒ
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int Pop()
             {
                 return pOutputPane_Pop(Hm.WindowHandle); ;
             }
 
             /// <summary>
-            /// ƒAƒEƒgƒvƒbƒg˜g‚É‚ ‚é•¶š—ñ‚ÌƒNƒŠƒA
+            /// ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã«ã‚ã‚‹æ–‡å­—åˆ—ã®ã‚¯ãƒªã‚¢
             /// </summary>
-            /// <returns>Œ»İ‚Ì‚Æ‚±‚ëA¬”Û‚ğw‚µ¦‚·’l‚Í•Ô‚Á‚Ä‚±‚È‚¢</returns>
+            /// <returns>ç¾åœ¨ã®ã¨ã“ã‚ã€æˆå¦ã‚’æŒ‡ã—ç¤ºã™å€¤ã¯è¿”ã£ã¦ã“ãªã„</returns>
             public static int Clear()
             {
-                //1009=ƒNƒŠƒA
+                //1009=ã‚¯ãƒªã‚¢
                 IntPtr r = OutputPane.SendMessage(1009);
                 if ((long)r < (long)int.MinValue)
                 {
@@ -140,9 +140,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒAƒEƒgƒvƒbƒg˜g‚ÌWindowHandle
+            /// ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã®WindowHandle
             /// </summary>
-            /// <returns>ƒAƒEƒgƒvƒbƒg˜g‚ÌWindowHandle</returns>
+            /// <returns>ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã®WindowHandle</returns>
             public static IntPtr WindowHandle
             {
                 get
@@ -152,9 +152,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒAƒEƒgƒvƒbƒg˜g‚Ö‚ÌSendMessage
+            /// ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã¸ã®SendMessage
             /// </summary>
-            /// <returns>SendMessage‚Ì•Ô‚è’l‚»‚Ì‚Ü‚Ü</returns>
+            /// <returns>SendMessageã®è¿”ã‚Šå€¤ãã®ã¾ã¾</returns>
             public static IntPtr SendMessage(int commandID)
             {
                 IntPtr result = Hm.SendMessage(OutputPane.WindowHandle, 0x111, (IntPtr)commandID, IntPtr.Zero);
@@ -162,9 +162,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒAƒEƒgƒvƒbƒg˜g‚Ìƒx[ƒX‚Æ‚È‚éƒfƒBƒŒƒNƒgƒŠ‚Ìİ’è
+            /// ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆæ ã®ãƒ™ãƒ¼ã‚¹ã¨ãªã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®è¨­å®š
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int SetBaseDir(string dirpath)
             {
                 if (Version < 877)
@@ -202,7 +202,7 @@ namespace HmNetCOM
         {
             private static UnManagedDll hmExplorerPaneHandle = null;
 
-            // ExplorerPane‚©‚ço‚Ä‚¢‚éŠÖ”ŒQ
+            // ExplorerPaneã‹ã‚‰å‡ºã¦ã„ã‚‹é–¢æ•°ç¾¤
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             private delegate int TExplorerPane_SetMode(IntPtr hHidemaruWindow, IntPtr mode);
 
@@ -262,9 +262,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚Ìƒ‚[ƒh‚Ìİ’è
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã®ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int SetMode(int mode)
             {
                 try
@@ -281,9 +281,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚Ìƒ‚[ƒh‚Ìæ“¾
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã®ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
             /// </summary>
-            /// <returns>ƒ‚[ƒh‚Ì’l</returns>
+            /// <returns>ãƒ¢ãƒ¼ãƒ‰ã®å€¤</returns>
             public static int GetMode()
             {
                 try
@@ -300,9 +300,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚Éw’è‚Ìƒtƒ@ƒCƒ‹‚ÌƒvƒƒWƒFƒNƒg‚ğ“Ç‚İ‚Ş
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã«æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int LoadProject(string filepath)
             {
                 try
@@ -320,9 +320,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚ÌƒvƒƒWƒFƒNƒg‚ğw’èƒtƒ@ƒCƒ‹‚É•Û‘¶
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
             /// </summary>
-            /// <returns>¸”s‚È‚ç0A¬Œ÷‚È‚ç0ˆÈŠO</returns>
+            /// <returns>å¤±æ•—ãªã‚‰0ã€æˆåŠŸãªã‚‰0ä»¥å¤–</returns>
             public static int SaveProject(string filepath)
             {
                 try
@@ -340,9 +340,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚ÉƒvƒƒWƒFƒNƒg‚ğ“Ç‚İ‚ñ‚Å‚¢‚é‚È‚ç‚ÎA‚»‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾‚·‚é
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã«ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãªã‚‰ã°ã€ãã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
             /// </summary>
-            /// <returns>ƒtƒ@ƒCƒ‹‚Ìƒtƒ‹ƒpƒXB“Ç‚İ‚ñ‚Å‚¢‚È‚¯‚ê‚Înull</returns>
+            /// <returns>ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹ã€‚èª­ã¿è¾¼ã‚“ã§ã„ãªã‘ã‚Œã°null</returns>
             public static string GetProject()
             {
                 try
@@ -377,7 +377,7 @@ namespace HmNetCOM
 
                     blist.Add(b);
 
-                    // •¶š—ñ‚ÌI’[‚Í‚â‚Í‚è0
+                    // æ–‡å­—åˆ—ã®çµ‚ç«¯ã¯ã‚„ã¯ã‚Š0
                     if (b == 0)
                     {
                         break;
@@ -390,9 +390,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğ•Ô‚·
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¿”ã™
             /// </summary>
-            /// <returns>ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ‹ƒpƒXB“Ç‚İ‘¹‚Ë‚½ê‡‚Ínull</returns>
+            /// <returns>ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ãƒ«ãƒ‘ã‚¹ã€‚èª­ã¿æã­ãŸå ´åˆã¯null</returns>
             public static string GetCurrentDir()
             {
                 if (Version < 885)
@@ -423,9 +423,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚ªuƒvƒƒWƒFƒNƒgv•\¦‚Ì‚Æ‚«AXV‚³‚ê‚½ó‘Ô‚Å‚ ‚é‚©‚Ç‚¤‚©‚ğ•Ô‚µ‚Ü‚·
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ãŒã€Œãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã€è¡¨ç¤ºã®ã¨ãã€æ›´æ–°ã•ã‚ŒãŸçŠ¶æ…‹ã§ã‚ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™
             /// </summary>
-            /// <returns>XVó‘Ô‚È‚ç1A‚»‚êˆÈŠO‚Í0</returns>
+            /// <returns>æ›´æ–°çŠ¶æ…‹ãªã‚‰1ã€ãã‚Œä»¥å¤–ã¯0</returns>
             public static int GetUpdated()
             {
                 try
@@ -442,9 +442,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚ÌWindowHandle
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã®WindowHandle
             /// </summary>
-            /// <returns>ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚ÌWindowHandle</returns>
+            /// <returns>ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã®WindowHandle</returns>
             public static IntPtr WindowHandle
             {
                 get
@@ -454,15 +454,15 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ˜g‚Ö‚ÌSendMessage
+            /// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£æ ã¸ã®SendMessage
             /// </summary>
-            /// <returns>SendMessage‚Ì•Ô‚è’l‚»‚Ì‚Ü‚Ü</returns>
+            /// <returns>SendMessageã®è¿”ã‚Šå€¤ãã®ã¾ã¾</returns>
             public static IntPtr SendMessage(int commandID)
             {
                 //
                 // loaddll "HmExplorerPane.dll";
                 // #h=dllfunc("GetWindowHandle",hidemaruhandle(0));
-                // #ret=sendmessage(#h,0x111/*WM_COMMAND*/,251,0); //251=‚P‚Âã‚ÌƒtƒHƒ‹ƒ_
+                // #ret=sendmessage(#h,0x111/*WM_COMMAND*/,251,0); //251=ï¼‘ã¤ä¸Šã®ãƒ•ã‚©ãƒ«ãƒ€
                 //
                 return Hm.SendMessage(ExplorerPane.WindowHandle, 0x111, (IntPtr)commandID, IntPtr.Zero);
             }
@@ -512,25 +512,25 @@ namespace HmNetCOM
 
                     byte[] byteArray = OriginalEncodeData.ToArray();
 
-                    // ˆêƒoƒbƒtƒ@[—p
+                    // ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ãƒ¼ç”¨
                     List<byte> tmp_buffer = new List<byte>();
                     int len = OriginalEncodeData.Count;
 
-                    int lastcheckindex = len - 4; // IsSTARTUNI_inline ‚É‚Í 4ƒoƒCƒg•K—v
+                    int lastcheckindex = len - 4; // IsSTARTUNI_inline ã«ã¯ 4ãƒã‚¤ãƒˆå¿…è¦
                     if (lastcheckindex < 0)
                     {
                         lastcheckindex = 0;
                     }
                     for (int i = 0; i < len; i++)
                     {
-                        // ˆê”Ê‚Ì•¶š‚Æ‚µ‚Ä‚Í‚Ù‚Ú—˜—p‚³‚ê‚È‚¢ƒXƒ^[ƒ}[ƒNB
+                        // ä¸€èˆ¬ã®æ–‡å­—ã¨ã—ã¦ã¯ã»ã¼åˆ©ç”¨ã•ã‚Œãªã„ã‚¹ã‚¿ãƒ¼ãƒãƒ¼ã‚¯ã€‚
                         if (i <= lastcheckindex && byteArray[i] == '\x1A')
                         {
                             uint StarUni = BitConverter.ToUInt32(byteArray, i);
 
                             if (IsSTARTUNI_inline(StarUni))
                             {
-                                // ¡‚Ü‚Å‚Ì•ª‚ÍƒXƒ^[ƒ†ƒjƒR[ƒh‚Å‚Í‚È‚¢‚Ì‚ÅA’Êí‚ÌSJIS‚Æ‚İ‚È‚µAutf16‚É•ÏŠ·‚µ‚Ä‘«‚µ‚İ
+                                // ä»Šã¾ã§ã®åˆ†ã¯ã‚¹ã‚¿ãƒ¼ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã§ã€é€šå¸¸ã®SJISã¨ã¿ãªã—ã€utf16ã«å¤‰æ›ã—ã¦è¶³ã—è¾¼ã¿
                                 if (tmp_buffer.Count > 0)
                                 {
                                     result += System.Text.Encoding.GetEncoding(932).GetString(tmp_buffer.ToArray());
@@ -539,7 +539,7 @@ namespace HmNetCOM
 
                                 byte[] starByteArray = BitConverter.GetBytes(StarUni);
                                 char wch = GetUnicodeInText(starByteArray);
-                                i = i + 3; // 1ƒoƒCƒg‚Å‚Í‚È‚­4ƒoƒCƒgÁ‰»‚µ‚½‚Ì‚ÅAŒvZ‚·‚é
+                                i = i + 3; // 1ãƒã‚¤ãƒˆã§ã¯ãªã4ãƒã‚¤ãƒˆæ¶ˆåŒ–ã—ãŸã®ã§ã€è¨ˆç®—ã™ã‚‹
                                 result += wch;
                                 continue;
                             }
@@ -610,7 +610,7 @@ namespace HmNetCOM
                 return ret;
             }
 
-            // wchar_t‚É’¼Ú‘Î‰‚µ‚Ä‚¢‚È‚¢‚æ‚¤‚ÈŒÃ‚¢GŠÛ‚Å‚ÍA‚±‚Ì“Áê‚È•ÏŠ·ƒ}ƒbƒv‚É‚æ‚é•ÏŠ·‚ğ‚µ‚ÄƒoƒCƒgƒR[ƒh‚Æ‚µ‚Ä“n‚·•K—v‚ª‚ ‚éB
+            // wchar_tã«ç›´æ¥å¯¾å¿œã—ã¦ã„ãªã„ã‚ˆã†ãªå¤ã„ç§€ä¸¸ã§ã¯ã€ã“ã®ç‰¹æ®Šãªå¤‰æ›ãƒãƒƒãƒ—ã«ã‚ˆã‚‹å¤‰æ›ã‚’ã—ã¦ãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã¨ã—ã¦æ¸¡ã™å¿…è¦ãŒã‚ã‚‹ã€‚
             public static byte[] EncodeWStringToOriginalEncodeVector(string original_string) {
                 List<byte> r = new List<byte>();
                 foreach (char ch in original_string)
@@ -674,9 +674,9 @@ namespace HmNetCOM
             }
         }
         /// <summary>
-        /// GŠÛƒo[ƒWƒ‡ƒ“‚Ìæ“¾
+        /// ç§€ä¸¸ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®å–å¾—
         /// </summary>
-        /// <returns>GŠÛƒo[ƒWƒ‡ƒ“</returns>
+        /// <returns>ç§€ä¸¸ãƒãƒ¼ã‚¸ãƒ§ãƒ³</returns>
         public static double Version { get; private set; } = 0;
 
         private const int filePathMaxLength = 512;
@@ -690,9 +690,9 @@ namespace HmNetCOM
         }
 
         /// <summary>
-        /// ŒÄ‚Î‚ê‚½ƒvƒƒZƒX‚ÌŒ»İ‚ÌGŠÛƒGƒfƒBƒ^‚ÌƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğ•Ô‚µ‚Ü‚·B
+        /// å‘¼ã°ã‚ŒãŸãƒ—ãƒ­ã‚»ã‚¹ã®ç¾åœ¨ã®ç§€ä¸¸ã‚¨ãƒ‡ã‚£ã‚¿ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã—ã¾ã™ã€‚
         /// </summary>
-        /// <returns>Œ»İ‚ÌGŠÛƒGƒfƒBƒ^‚ÌƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹</returns>
+        /// <returns>ç¾åœ¨ã®ç§€ä¸¸ã‚¨ãƒ‡ã‚£ã‚¿ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«</returns>
         public static IntPtr WindowHandle
         {
             get
@@ -720,7 +720,7 @@ namespace HmNetCOM
 
     internal partial class Hm
     {
-        // GŠÛ–{‘Ì‚©‚ço‚Ä‚¢‚éŠÖ”ŒQ
+        // ç§€ä¸¸æœ¬ä½“ã‹ã‚‰å‡ºã¦ã„ã‚‹é–¢æ•°ç¾¤
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr TGetCurrentWindowHandle();
 
@@ -757,7 +757,7 @@ namespace HmNetCOM
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TSetStaticVariable([MarshalAs(UnmanagedType.LPWStr)] String pwszSymbolName, [MarshalAs(UnmanagedType.LPWStr)] String pwszValue, int sharedMemoryFlag);
 
-        // GŠÛ–{‘Ì‚©‚ço‚Ä‚¢‚éŠÖ”ŒQ
+        // ç§€ä¸¸æœ¬ä½“ã‹ã‚‰å‡ºã¦ã„ã‚‹é–¢æ•°ç¾¤
         private static TGetCurrentWindowHandle pGetCurrentWindowHandle;
         private static TGetTotalTextUnicode pGetTotalTextUnicode;
         private static TGetLineTextUnicode pGetLineTextUnicode;
@@ -771,12 +771,12 @@ namespace HmNetCOM
         private static TGetStaticVariable pGetStaticVariable;
         private static TSetStaticVariable pSetStaticVariable;
 
-        // GŠÛ–{‘Ì‚Ìexe‚ğw‚·ƒ‚ƒWƒ…[ƒ‹ƒnƒ“ƒhƒ‹
+        // ç§€ä¸¸æœ¬ä½“ã®exeã‚’æŒ‡ã™ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒ³ãƒ‰ãƒ«
         private static UnManagedDll hmExeHandle;
 
         private static void BindHidemaruExternFunctions()
         {
-            // ‰‚ß‚Ä‚Ì‘ã“ü‚Ì‚İ
+            // åˆã‚ã¦ã®ä»£å…¥ã®ã¿
             if (hmExeHandle == null)
             {
                 try
@@ -878,9 +878,9 @@ namespace HmNetCOM
 
     internal partial class Hm
     {
-        // ƒAƒ“ƒ}ƒl[ƒWƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ì’x‰„‚Å‚Ì“Ç‚İ‚İBC++‚ÌLoadLibrary‚Æ“¯‚¶‚±‚Æ‚ğ‚·‚é‚½‚ß
-        // ‚±‚ê‚ğ‚·‚é——R‚ÍA‚±‚ÌÀsdll‚ÆHideamru.exe‚ªˆÙ‚È‚éƒfƒBƒŒƒNƒgƒŠ‚É‘¶İ‚·‚é‰Â”\«‚ª‚ ‚é‚½‚ßA
-        // C#•—‚ÌDllImport‚Í¬—§‚µ‚È‚¢‚©‚ç‚¾B
+        // ã‚¢ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é…å»¶ã§ã®èª­ã¿è¾¼ã¿ã€‚C++ã®LoadLibraryã¨åŒã˜ã“ã¨ã‚’ã™ã‚‹ãŸã‚
+        // ã“ã‚Œã‚’ã™ã‚‹ç†ç”±ã¯ã€ã“ã®å®Ÿè¡Œdllã¨Hideamru.exeãŒç•°ãªã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«å­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚ã€
+        // C#é¢¨ã®DllImportã¯æˆç«‹ã—ãªã„ã‹ã‚‰ã ã€‚
         internal sealed class UnManagedDll : HmNativeMethods.NativeMethods, IDisposable
         {
 
@@ -890,14 +890,14 @@ namespace HmNetCOM
                 moduleHandle = LoadLibrary(lpFileName);
             }
 
-            // ƒR[ƒh•ªÍ‚È‚Ç‚ÌÛ‚ÌŒx—}§‚Ì‚½‚ß‚ÉƒfƒXƒgƒ‰ƒNƒ^‚ğ‚Â‚¯‚Ä‚¨‚­
+            // ã‚³ãƒ¼ãƒ‰åˆ†æãªã©ã®éš›ã®è­¦å‘ŠæŠ‘åˆ¶ã®ãŸã‚ã«ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ã¤ã‘ã¦ãŠã
             ~UnManagedDll()
             {
-                // C#‚ÍƒƒCƒ“ƒhƒƒCƒ“‚Ìdll‚Í(‚±‚ÌƒR[ƒh‚ª‘¶İ‚·‚édll)‚ÍƒvƒƒZƒX‚ªI‚í‚ç‚È‚¢ŒÀ‚è‰ğ•ú‚³‚ê‚È‚¢‚Ì‚ÅA
-                // ‚±‚±‚Å‚ÍƒlƒCƒeƒBƒu‚Ìdll‚à–‘O‚É‚Í‰ğ•ú‚µ‚È‚¢•û‚ª‚æ‚¢B(ƒvƒƒZƒXI—¹‚É‚æ‚é‰ğ•ú‚ÉˆÏ‚Ë‚éj
-                // ƒfƒXƒgƒ‰ƒNƒ^‚Å‚Í‰½‚à‚µ‚È‚¢B
-                // ƒR[ƒh•ªÍ‚Å‚àŒx‚ª‚Å‚È‚¢‚æ‚¤‚ÉAƒR[ƒh•ªÍ‚Å‚ÍÀs‚³‚ê‚È‚¢‚±‚Æ‚ª‚í‚©‚ç‚È‚¢Œ`‚Å
-                // Œˆ‚µ‚ÄÀs‚³‚ê‚È‚¢ƒR[ƒh‚É‚µ‚Ä‚¨‚­
+                // C#ã¯ãƒ¡ã‚¤ãƒ³ãƒ‰ãƒ¡ã‚¤ãƒ³ã®dllã¯(ã“ã®ã‚³ãƒ¼ãƒ‰ãŒå­˜åœ¨ã™ã‚‹dll)ã¯ãƒ—ãƒ­ã‚»ã‚¹ãŒçµ‚ã‚ã‚‰ãªã„é™ã‚Šè§£æ”¾ã•ã‚Œãªã„ã®ã§ã€
+                // ã“ã“ã§ã¯ãƒã‚¤ãƒ†ã‚£ãƒ–ã®dllã‚‚äº‹å‰ã«ã¯è§£æ”¾ã—ãªã„æ–¹ãŒã‚ˆã„ã€‚(ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†ã«ã‚ˆã‚‹è§£æ”¾ã«å§”ã­ã‚‹ï¼‰
+                // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã¯ä½•ã‚‚ã—ãªã„ã€‚
+                // ã‚³ãƒ¼ãƒ‰åˆ†æã§ã‚‚è­¦å‘ŠãŒã§ãªã„ã‚ˆã†ã«ã€ã‚³ãƒ¼ãƒ‰åˆ†æã§ã¯å®Ÿè¡Œã•ã‚Œãªã„ã“ã¨ãŒã‚ã‹ã‚‰ãªã„å½¢ã§
+                // æ±ºã—ã¦å®Ÿè¡Œã•ã‚Œãªã„ã‚³ãƒ¼ãƒ‰ã«ã—ã¦ãŠã
                 if (moduleHandle == (IntPtr)(-1)) { this.Dispose(); };
             }
 
@@ -941,9 +941,9 @@ namespace HmNetCOM
         public static partial class Macro
         {
             /// <summary>
-            /// ƒ}ƒNƒ‚ğÀs’†‚©”Û‚©‚ğ”»’è‚·‚é
+            /// ãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œä¸­ã‹å¦ã‹ã‚’åˆ¤å®šã™ã‚‹
             /// </summary>
-            /// <returns>Às’†‚È‚çtrue, ‚»‚¤‚Å‚È‚¯‚ê‚Îfalse</returns>
+            /// <returns>å®Ÿè¡Œä¸­ãªã‚‰true, ãã†ã§ãªã‘ã‚Œã°false</returns>
             public static bool IsExecuting
             {
                 get
@@ -963,28 +963,28 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒ}ƒNƒ‚ÌÃ“I‚È•Ï”
+            /// ãƒã‚¯ãƒ­ã®é™çš„ãªå¤‰æ•°
             /// </summary>
             public static partial class StaticVar {
 
                 /// <summary>
-                /// ƒ}ƒNƒ‚ÌÃ“I‚È•Ï”‚Ì’l(•¶š—ñ)‚ğæ“¾‚·‚é
+                /// ãƒã‚¯ãƒ­ã®é™çš„ãªå¤‰æ•°ã®å€¤(æ–‡å­—åˆ—)ã‚’å–å¾—ã™ã‚‹
                 /// </summary>
-                /// <param name = "name">•Ï”–¼</param>
-                /// <param name = "sharedflag">‹¤—Lƒtƒ‰ƒO</param>
-                /// <returns>‘ÎÛ‚ÌÃ“I•Ï”–¼(name)‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•¶š—ñ</returns>
+                /// <param name = "name">å¤‰æ•°å</param>
+                /// <param name = "sharedflag">å…±æœ‰ãƒ•ãƒ©ã‚°</param>
+                /// <returns>å¯¾è±¡ã®é™çš„å¤‰æ•°å(name)ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—</returns>
                 public static string Get(string name, int sharedflag)
                 {
                     return GetStaticVariable(name, sharedflag);
                 }
 
                 /// <summary>
-                /// ƒ}ƒNƒ‚ÌÃ“I‚È•Ï”‚Ö‚Æ’l(•¶š—ñ)‚ğİ’è‚·‚é
+                /// ãƒã‚¯ãƒ­ã®é™çš„ãªå¤‰æ•°ã¸ã¨å€¤(æ–‡å­—åˆ—)ã‚’è¨­å®šã™ã‚‹
                 /// </summary>
-                /// <param name = "name">•Ï”–¼</param>
-                /// <param name = "value">İ’è‚·‚é’l(•¶š—ñ)</param>
-                /// <param name = "sharedflag">‹¤—Lƒtƒ‰ƒO</param>
-                /// <returns>æ“¾‚É¬Œ÷‚·‚ê‚Î^A¸”s‚·‚ê‚Î‹U‚ª•Ô‚é</returns>
+                /// <param name = "name">å¤‰æ•°å</param>
+                /// <param name = "value">è¨­å®šã™ã‚‹å€¤(æ–‡å­—åˆ—)</param>
+                /// <param name = "sharedflag">å…±æœ‰ãƒ•ãƒ©ã‚°</param>
+                /// <returns>å–å¾—ã«æˆåŠŸã™ã‚Œã°çœŸã€å¤±æ•—ã™ã‚Œã°å½ãŒè¿”ã‚‹</returns>
                 public static bool Set(string name, string value, int sharedflag)
                 {
                     var ret = SetStaticVariable(name, value, sharedflag);
@@ -1057,7 +1057,7 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒ}ƒNƒ‚ğƒvƒƒOƒ‰ƒ€“à‚©‚çÀs‚µ‚½Û‚Ì•Ô‚è’l‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX
+            /// ãƒã‚¯ãƒ­ã‚’ãƒ—ãƒ­ã‚°ãƒ©ãƒ å†…ã‹ã‚‰å®Ÿè¡Œã—ãŸéš›ã®è¿”ã‚Šå€¤ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
             /// </summary>
             /// <returns>(Result, Message, Error)</returns>
             public interface IResult
@@ -1082,8 +1082,8 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// Œ»İ‚Ìƒ}ƒNƒÀs’†‚ÉAƒvƒƒOƒ‰ƒ€’†‚ÅAƒ}ƒNƒ‚ğ•¶š—ñ‚ÅÀsB
-            /// ƒ}ƒNƒÀs’†‚Ì‚İÀs‰Â”\‚Èƒƒ\ƒbƒhB
+            /// ç¾åœ¨ã®ãƒã‚¯ãƒ­å®Ÿè¡Œä¸­ã«ã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸­ã§ã€ãƒã‚¯ãƒ­ã‚’æ–‡å­—åˆ—ã§å®Ÿè¡Œã€‚
+            /// ãƒã‚¯ãƒ­å®Ÿè¡Œä¸­ã®ã¿å®Ÿè¡Œå¯èƒ½ãªãƒ¡ã‚½ãƒƒãƒ‰ã€‚
             /// </summary>
             /// <returns>(Result, Message, Error)</returns>
 
@@ -1122,8 +1122,8 @@ namespace HmNetCOM
             public static partial class Exec
             {
                 /// <summary>
-                /// ƒ}ƒNƒ‚ğÀs‚µ‚Ä‚¢‚È‚¢‚ÉAƒvƒƒOƒ‰ƒ€’†‚ÅAƒ}ƒNƒƒtƒ@ƒCƒ‹‚ğ—^‚¦‚ÄV‚½‚Èƒ}ƒNƒ‚ğÀsB
-                /// ƒ}ƒNƒ‚ğÀs‚µ‚Ä‚¢‚È‚¢‚Ì‚İÀs‰Â”\‚Èƒƒ\ƒbƒhB
+                /// ãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œã—ã¦ã„ãªã„æ™‚ã«ã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸­ã§ã€ãƒã‚¯ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸ãˆã¦æ–°ãŸãªãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œã€‚
+                /// ãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œã—ã¦ã„ãªã„æ™‚ã®ã¿å®Ÿè¡Œå¯èƒ½ãªãƒ¡ã‚½ãƒƒãƒ‰ã€‚
                 /// </summary>
                 /// <returns>(Result, Message, Error)</returns>
                 public static IResult File(string filepath)
@@ -1147,7 +1147,7 @@ namespace HmNetCOM
                     IntPtr hWndHidemaru = WindowHandle;
 
                     StringBuilder sbFileName = new StringBuilder(filepath);
-                    StringBuilder sbRet = new StringBuilder("\x0f0f", 0x0f0f + 1); // Å‰‚Ì’l‚Í‹A‚è’l‚Ìƒoƒbƒtƒ@[
+                    StringBuilder sbRet = new StringBuilder("\x0f0f", 0x0f0f + 1); // æœ€åˆã®å€¤ã¯å¸°ã‚Šå€¤ã®ãƒãƒƒãƒ•ã‚¡ãƒ¼
                     IntPtr cwch = SendMessage(hWndHidemaru, WM_REMOTE_EXECMACRO_FILE, sbRet, sbFileName);
                     if (cwch != IntPtr.Zero)
                     {
@@ -1162,8 +1162,8 @@ namespace HmNetCOM
                 }
 
                 /// <summary>
-                /// ƒ}ƒNƒ‚ğÀs‚µ‚Ä‚¢‚È‚¢‚ÉAƒvƒƒOƒ‰ƒ€’†‚ÅA•¶š—ñ‚ÅV‚½‚Èƒ}ƒNƒ‚ğÀsB
-                /// ƒ}ƒNƒ‚ğÀs‚µ‚Ä‚¢‚È‚¢‚Ì‚İÀs‰Â”\‚Èƒƒ\ƒbƒhB
+                /// ãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œã—ã¦ã„ãªã„æ™‚ã«ã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸­ã§ã€æ–‡å­—åˆ—ã§æ–°ãŸãªãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œã€‚
+                /// ãƒã‚¯ãƒ­ã‚’å®Ÿè¡Œã—ã¦ã„ãªã„æ™‚ã®ã¿å®Ÿè¡Œå¯èƒ½ãªãƒ¡ã‚½ãƒƒãƒ‰ã€‚
                 /// </summary>
                 /// <returns>(Result, Message, Error)</returns>
                 public static IResult Eval(string expression)
@@ -1181,7 +1181,7 @@ namespace HmNetCOM
                     IntPtr hWndHidemaru = WindowHandle;
 
                     StringBuilder sbExpression = new StringBuilder(expression);
-                    StringBuilder sbRet = new StringBuilder("\x0f0f", 0x0f0f + 1); // Å‰‚Ì’l‚Í‹A‚è’l‚Ìƒoƒbƒtƒ@[
+                    StringBuilder sbRet = new StringBuilder("\x0f0f", 0x0f0f + 1); // æœ€åˆã®å€¤ã¯å¸°ã‚Šå€¤ã®ãƒãƒƒãƒ•ã‚¡ãƒ¼
                     IntPtr cwch = SendMessage(hWndHidemaru, WM_REMOTE_EXECMACRO_MEMORY, sbRet, sbExpression);
                     if (cwch != IntPtr.Zero)
                     {
@@ -1244,18 +1244,18 @@ namespace HmNetCOM
         public static partial class Edit
         {
             /// <summary>
-            /// ƒL[“ü—Í‚ª‚ ‚é‚È‚Ç‚Ì——R‚Åˆ—‚ğ’†’f‚·‚é‚×‚«‚©‚ğ•Ô‚·B
+            /// ã‚­ãƒ¼å…¥åŠ›ãŒã‚ã‚‹ãªã©ã®ç†ç”±ã§å‡¦ç†ã‚’ä¸­æ–­ã™ã‚‹ã¹ãã‹ã‚’è¿”ã™ã€‚
             /// </summary>
-            /// <returns>’†’f‚·‚é‚×‚«‚È‚çtrueA‚»‚¤‚Å‚È‚¯‚ê‚Îfalse</returns>
+            /// <returns>ä¸­æ–­ã™ã‚‹ã¹ããªã‚‰trueã€ãã†ã§ãªã‘ã‚Œã°false</returns>
             public static bool QueueStatus
             {
                 get { return pCheckQueueStatus() != 0; }
             }
 
             /// <summary>
-            /// Œ»İƒAƒNƒeƒBƒu‚È•ÒW—Ìˆæ‚ÌƒeƒLƒXƒg‘S‘Ì‚ğ•Ô‚·B
+            /// ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªç·¨é›†é ˜åŸŸã®ãƒ†ã‚­ã‚¹ãƒˆå…¨ä½“ã‚’è¿”ã™ã€‚
             /// </summary>
-            /// <returns>•ÒW—Ìˆæ‚ÌƒeƒLƒXƒg‘S‘Ì</returns>
+            /// <returns>ç·¨é›†é ˜åŸŸã®ãƒ†ã‚­ã‚¹ãƒˆå…¨ä½“</returns>
             public static string TotalText
             {
                 get
@@ -1293,9 +1293,9 @@ namespace HmNetCOM
 
 
             /// <summary>
-            /// Œ»İA’Pƒ‘I‘ğ‚µ‚Ä‚¢‚éê‡A‚»‚Ì‘I‘ğ’†‚ÌƒeƒLƒXƒg“à—e‚ğ•Ô‚·B
+            /// ç¾åœ¨ã€å˜ç´”é¸æŠã—ã¦ã„ã‚‹å ´åˆã€ãã®é¸æŠä¸­ã®ãƒ†ã‚­ã‚¹ãƒˆå†…å®¹ã‚’è¿”ã™ã€‚
             /// </summary>
-            /// <returns>‘I‘ğ’†‚ÌƒeƒLƒXƒg“à—e</returns>
+            /// <returns>é¸æŠä¸­ã®ãƒ†ã‚­ã‚¹ãƒˆå†…å®¹</returns>
             public static string SelectedText
             {
                 get
@@ -1332,9 +1332,9 @@ namespace HmNetCOM
             static partial void SetSelectedText(string text);
 
             /// <summary>
-            /// Œ»İAƒJ[ƒ\ƒ‹‚ª‚ ‚és(ƒGƒfƒBƒ^“I)‚ÌƒeƒLƒXƒg“à—e‚ğ•Ô‚·B
+            /// ç¾åœ¨ã€ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹è¡Œ(ã‚¨ãƒ‡ã‚£ã‚¿çš„)ã®ãƒ†ã‚­ã‚¹ãƒˆå†…å®¹ã‚’è¿”ã™ã€‚
             /// </summary>
-            /// <returns>ƒJ[ƒ\ƒ‹‚ª‚ ‚és‚ÌƒeƒLƒXƒg“à—e</returns>
+            /// <returns>ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹è¡Œã®ãƒ†ã‚­ã‚¹ãƒˆå†…å®¹</returns>
             public static string LineText
             {
                 get
@@ -1378,7 +1378,7 @@ namespace HmNetCOM
             static partial void SetLineText(string text);
 
             /// <summary>
-            /// CursorPos ‚Ì•Ô‚è’l‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX
+            /// CursorPos ã®è¿”ã‚Šå€¤ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
             /// </summary>
             /// <returns>(LineNo, Column)</returns>
             public interface ICursorPos
@@ -1394,7 +1394,7 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// MousePos ‚Ì•Ô‚è’l‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX
+            /// MousePos ã®è¿”ã‚Šå€¤ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
             /// </summary>
             /// <returns>(LineNo, Column, X, Y)</returns>
             public interface IMousePos
@@ -1414,7 +1414,7 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒ†ƒjƒR[ƒh‚ÌƒGƒfƒBƒ^“I‚ÈŠ·Z‚Å‚ÌƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ•Ô‚·
+            /// ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ‰ã®ã‚¨ãƒ‡ã‚£ã‚¿çš„ãªæ›ç®—ã§ã®ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’è¿”ã™
             /// </summary>
             /// <returns>(LineNo, Column)</returns>
             public static ICursorPos CursorPos
@@ -1443,7 +1443,7 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// ƒ†ƒjƒR[ƒh‚ÌƒGƒfƒBƒ^“I‚ÈŠ·Z‚Å‚Ìƒ}ƒEƒX‚ÌˆÊ’u‚É‘Î‰‚·‚éƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ•Ô‚·
+            /// ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ‰ã®ã‚¨ãƒ‡ã‚£ã‚¿çš„ãªæ›ç®—ã§ã®ãƒã‚¦ã‚¹ã®ä½ç½®ã«å¯¾å¿œã™ã‚‹ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’è¿”ã™
             /// </summary>
             /// <returns>(LineNo, Column, X, Y)</returns>
             public static IMousePos MousePos
@@ -1483,9 +1483,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// Œ»İŠJ‚¢‚Ä‚¢‚éƒtƒ@ƒCƒ‹–¼‚Ìƒtƒ‹ƒpƒX‚ğ•Ô‚·A–³‘èƒeƒLƒXƒg‚Å‚ ‚ê‚ÎAnull‚ğ•Ô‚·B
+            /// ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’è¿”ã™ã€ç„¡é¡Œãƒ†ã‚­ã‚¹ãƒˆã§ã‚ã‚Œã°ã€nullã‚’è¿”ã™ã€‚
             /// </summary>
-            /// <returns>ƒtƒ@ƒCƒ‹–¼‚Ìƒtƒ‹ƒpƒXA‚à‚µ‚­‚Í null</returns>
+            /// <returns>ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ•ãƒ«ãƒ‘ã‚¹ã€ã‚‚ã—ãã¯ null</returns>
 
             public static string FilePath
             {
@@ -1498,7 +1498,7 @@ namespace HmNetCOM
                         const int WM_HIDEMARUINFO = WM_USER + 181;
                         const int HIDEMARUINFO_GETFILEFULLPATH = 4;
 
-                        StringBuilder sb = new StringBuilder(filePathMaxLength); // ‚Ü‚Ÿ‚±‚ñ‚­‚ç‚¢‚Å‚³‚·‚ª‚É\•ª‚È‚ñ‚¶‚á‚È‚¢‚Ì...
+                        StringBuilder sb = new StringBuilder(filePathMaxLength); // ã¾ãã“ã‚“ãã‚‰ã„ã§ã•ã™ãŒã«ååˆ†ãªã‚“ã˜ã‚ƒãªã„ã®...
                         IntPtr cwch = SendMessage(hWndHidemaru, WM_HIDEMARUINFO, new IntPtr(HIDEMARUINFO_GETFILEFULLPATH), sb);
                         String filename = sb.ToString();
                         if (String.IsNullOrEmpty(filename))
@@ -1515,9 +1515,9 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// Œ»İŠJ‚¢‚Ä‚¢‚é•ÒWƒGƒŠƒA‚ÅA•¶š—ñ‚Ì•ÒW‚â‰½‚ç‚©‚Ì‹ï‘Ì“I‘€ì‚ğs‚Á‚½‚©ƒ`ƒFƒbƒN‚·‚éBƒ}ƒNƒ•Ï”‚Ìupdatecount‘Š“–
+            /// ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ç·¨é›†ã‚¨ãƒªã‚¢ã§ã€æ–‡å­—åˆ—ã®ç·¨é›†ã‚„ä½•ã‚‰ã‹ã®å…·ä½“çš„æ“ä½œã‚’è¡Œã£ãŸã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚ãƒã‚¯ãƒ­å¤‰æ•°ã®updatecountç›¸å½“
             /// </summary>
-            /// <returns>ˆê‰ñ‚Ì‘€ì‚Å‚à”ƒJƒEƒ“ƒgã‚ª‚éB32bit‚Ì’l‚ğ’´‚¦‚é‚Æˆêü‚·‚éB‰Šú’l‚Í1ˆÈãB</returns>
+            /// <returns>ä¸€å›ã®æ“ä½œã§ã‚‚æ•°ã‚«ã‚¦ãƒ³ãƒˆä¸ŠãŒã‚‹ã€‚32bitã®å€¤ã‚’è¶…ãˆã‚‹ã¨ä¸€å‘¨ã™ã‚‹ã€‚åˆæœŸå€¤ã¯1ä»¥ä¸Šã€‚</returns>
 
             public static int UpdateCount
             {
@@ -1709,7 +1709,7 @@ namespace HmNetCOM
                 void Close();
             }
 
-            // “r’†‚ÅƒGƒ‰[‚ªo‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅA‘Š‰‚µ‚¢Unlock‚âFree‚ªo—ˆ‚é‚æ‚¤‚É“à•”ŠÇ——p
+            // é€”ä¸­ã§ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ã€ç›¸å¿œã—ã„Unlockã‚„FreeãŒå‡ºæ¥ã‚‹ã‚ˆã†ã«å†…éƒ¨ç®¡ç†ç”¨
             private enum HGlobalStatus { None, Lock, Unlock, Free };
 
             private static String ReadAllText(String filepath, int hm_encode = -1)
@@ -1757,20 +1757,20 @@ namespace HmNetCOM
                     {
                         switch (hgs)
                         {
-                            // ƒƒbƒN‚¾‚¯¬Œ÷‚µ‚½
+                            // ãƒ­ãƒƒã‚¯ã ã‘æˆåŠŸã—ãŸ
                             case HGlobalStatus.Lock:
                                 {
                                     GlobalUnlock(hGlobal);
                                     GlobalFree(hGlobal);
                                     break;
                                 }
-                            // ƒAƒ“ƒƒbƒN‚Ü‚Å¬Œ÷‚µ‚½
+                            // ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã¾ã§æˆåŠŸã—ãŸ
                             case HGlobalStatus.Unlock:
                                 {
                                     GlobalFree(hGlobal);
                                     break;
                                 }
-                            // ƒtƒŠ[‚Ü‚Å¬Œ÷‚µ‚½
+                            // ãƒ•ãƒªãƒ¼ã¾ã§æˆåŠŸã—ãŸ
                             case HGlobalStatus.Free:
                                 {
                                     break;
@@ -1797,34 +1797,34 @@ namespace HmNetCOM
                 65000,  // encode = 5 UTF-7
                 65001,  // encode = 6 UTF-8
                 1201,   // encode = 7 Unicode UTF-16, big-endian
-                1252,   // encode = 8 ‰¢•¶ ANSI Latin 1; Western European (Windows)
-                936,    // encode = 9 ŠÈ‘Ìš’†‘Œê ANSI/OEM Simplified Chinese (PRC, Singapore); Chinese Simplified (GB2312)
-                950,    // encode =10 ”É‘Ìš’†‘Œê ANSI/OEM Traditional Chinese (Taiwan; Hong Kong SAR, PRC); Chinese Traditional (Big5)
-                949,    // encode =11 ŠØ‘Œê ANSI/OEM Korean (Unified Hangul Code)
-                1361,   // encode =12 ŠØ‘Œê Korean (Johab)
-                1250,   // encode =13 ’†‰›ƒˆ[ƒƒbƒpŒ¾Œê ANSI Central European; Central European (Windows)
-                1257,   // encode =14 ƒoƒ‹ƒgŒê ANSI Baltic; Baltic (Windows)
-                1253,   // encode =15 ƒMƒŠƒVƒƒŒê ANSI Greek; Greek (Windows)
-                1251,   // encode =16 ƒLƒŠƒ‹Œ¾Œê ANSI Cyrillic; Cyrillic (Windows)
-                42,     // encode =17 ƒVƒ“ƒ{ƒ‹
-                1254,   // encode =18 ƒgƒ‹ƒRŒê ANSI Turkish; Turkish (Windows)
-                1255,   // encode =19 ƒwƒuƒ‰ƒCŒê ANSI Hebrew; Hebrew (Windows)
-                1256,   // encode =20 ƒAƒ‰ƒrƒAŒê ANSI Arabic; Arabic (Windows)
-                874,    // encode =21 ƒ^ƒCŒê ANSI/OEM Thai (same as 28605, ISO 8859-15); Thai (Windows)
-                1258,   // encode =22 ƒxƒgƒiƒ€Œê ANSI/OEM Vietnamese; Vietnamese (Windows)
+                1252,   // encode = 8 æ¬§æ–‡ ANSI Latin 1; Western European (Windows)
+                936,    // encode = 9 ç°¡ä½“å­—ä¸­å›½èª ANSI/OEM Simplified Chinese (PRC, Singapore); Chinese Simplified (GB2312)
+                950,    // encode =10 ç¹ä½“å­—ä¸­å›½èª ANSI/OEM Traditional Chinese (Taiwan; Hong Kong SAR, PRC); Chinese Traditional (Big5)
+                949,    // encode =11 éŸ“å›½èª ANSI/OEM Korean (Unified Hangul Code)
+                1361,   // encode =12 éŸ“å›½èª Korean (Johab)
+                1250,   // encode =13 ä¸­å¤®ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘è¨€èª ANSI Central European; Central European (Windows)
+                1257,   // encode =14 ãƒãƒ«ãƒˆèª ANSI Baltic; Baltic (Windows)
+                1253,   // encode =15 ã‚®ãƒªã‚·ãƒ£èª ANSI Greek; Greek (Windows)
+                1251,   // encode =16 ã‚­ãƒªãƒ«è¨€èª ANSI Cyrillic; Cyrillic (Windows)
+                42,     // encode =17 ã‚·ãƒ³ãƒœãƒ«
+                1254,   // encode =18 ãƒˆãƒ«ã‚³èª ANSI Turkish; Turkish (Windows)
+                1255,   // encode =19 ãƒ˜ãƒ–ãƒ©ã‚¤èª ANSI Hebrew; Hebrew (Windows)
+                1256,   // encode =20 ã‚¢ãƒ©ãƒ“ã‚¢èª ANSI Arabic; Arabic (Windows)
+                874,    // encode =21 ã‚¿ã‚¤èª ANSI/OEM Thai (same as 28605, ISO 8859-15); Thai (Windows)
+                1258,   // encode =22 ãƒ™ãƒˆãƒŠãƒ èª ANSI/OEM Vietnamese; Vietnamese (Windows)
                 10001,  // encode =23 x-mac-japanese Japanese (Mac)
                 850,    // encode =24 OEM/DOS
-                0,      // encode =25 ‚»‚Ì‘¼
+                0,      // encode =25 ãã®ä»–
                 12000,  // encode =26 Unicode (UTF-32) little-endian
                 12001,  // encode =27 Unicode (UTF-32) big-endian
 
             };
 
             /// <summary>
-            /// GŠÛ‚Åƒtƒ@ƒCƒ‹‚ÌƒGƒ“ƒR[ƒh‚ğæ“¾‚·‚é
-            /// iGŠÛ‚Éİ’è‚³‚ê‚Ä‚¢‚é“à—e‚É]‚¤j
+            /// ç§€ä¸¸ã§ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
+            /// ï¼ˆç§€ä¸¸ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å†…å®¹ã«å¾“ã†ï¼‰
             /// </summary>
-            /// <returns>IEncodingŒ^‚ÌƒIƒuƒWƒFƒNƒgBMsCodePage ‚Æ HmEncode ‚ÌƒvƒƒpƒeƒB‚ğ“¾‚ç‚ê‚éB</returns>
+            /// <returns>IEncodingå‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚MsCodePage ã¨ HmEncode ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å¾—ã‚‰ã‚Œã‚‹ã€‚</returns>
             public static IEncoding GetEncoding(string filepath)
             {
                 int hm_encode = GetHmEncode(filepath);
@@ -1862,24 +1862,24 @@ namespace HmNetCOM
                     UTF-7 encode=5 codepage=65000
                     UTF-8 encode=6 codepage=65001
                     Unicode (Big-Endian) encode=7 codepage=1201
-                    ‰¢•¶ encode=8 codepage=1252
-                    ŠÈ‘Ìš’†‘Œê encode=9 codepage=936
-                    ”É‘Ìš’†‘Œê encode=10 codepage=950
-                    ŠØ‘Œê encode=11 codepage=949
-                    ŠØ‘Œê(Johab) encode=12 codepage=1361
-                    ’†‰›ƒˆ[ƒƒbƒpŒ¾Œê encode=13 codepage=1250
-                    ƒoƒ‹ƒgŒê encode=14 codepage=1257
-                    ƒMƒŠƒVƒƒŒê encode=15 codepage=1253
-                    ƒLƒŠƒ‹Œ¾Œê encode=16 codepage=1251
-                    ƒVƒ“ƒ{ƒ‹ encode=17 codepage=42
-                    ƒgƒ‹ƒRŒê encode=18 codepage=1254
-                    ƒwƒuƒ‰ƒCŒê encode=19 codepage=1255
-                    ƒAƒ‰ƒrƒAŒê encode=20 codepage=1256
-                    ƒ^ƒCŒê encode=21 codepage=874
-                    ƒxƒgƒiƒ€Œê encode=22 codepage=1258
+                    æ¬§æ–‡ encode=8 codepage=1252
+                    ç°¡ä½“å­—ä¸­å›½èª encode=9 codepage=936
+                    ç¹ä½“å­—ä¸­å›½èª encode=10 codepage=950
+                    éŸ“å›½èª encode=11 codepage=949
+                    éŸ“å›½èª(Johab) encode=12 codepage=1361
+                    ä¸­å¤®ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘è¨€èª encode=13 codepage=1250
+                    ãƒãƒ«ãƒˆèª encode=14 codepage=1257
+                    ã‚®ãƒªã‚·ãƒ£èª encode=15 codepage=1253
+                    ã‚­ãƒªãƒ«è¨€èª encode=16 codepage=1251
+                    ã‚·ãƒ³ãƒœãƒ« encode=17 codepage=42
+                    ãƒˆãƒ«ã‚³èª encode=18 codepage=1254
+                    ãƒ˜ãƒ–ãƒ©ã‚¤èª encode=19 codepage=1255
+                    ã‚¢ãƒ©ãƒ“ã‚¢èª encode=20 codepage=1256
+                    ã‚¿ã‚¤èª encode=21 codepage=874
+                    ãƒ™ãƒˆãƒŠãƒ èª encode=22 codepage=1258
                     Macintosh encode=23 codepage=0
                     OEM/DOS encode=24 codepage=0
-                    ‚»‚Ì‘¼ encode=25 codepage=0
+                    ãã®ä»– encode=25 codepage=0
                     UTF-32 encode=27 codepage=12000
                     UTF-32 (Big-Endian) encode=28 codepage=12001
                 */
@@ -1890,18 +1890,18 @@ namespace HmNetCOM
 
                 if (hidemaru_encode < key_encode_value_codepage_array.Length)
                 {
-                    // ”cˆ¬‚µ‚Ä‚¢‚éƒR[ƒhƒy[ƒW‚È‚Ì‚Å“ü‚ê‚Ä‚¨‚­
+                    // æŠŠæ¡ã—ã¦ã„ã‚‹ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸ãªã®ã§å…¥ã‚Œã¦ãŠã
                     result_codepage = key_encode_value_codepage_array[hidemaru_encode];
                     return result_codepage;
                 }
-                else // ’·‚³ˆÈã‚È‚çA—\Šú‚¹‚Ê–¢—ˆ‚Ìencode”Ô†‘Î‰
+                else // é•·ã•ä»¥ä¸Šãªã‚‰ã€äºˆæœŸã›ã¬æœªæ¥ã®encodeç•ªå·å¯¾å¿œ
                 {
                     return result_codepage;
                 }
 
             }
 
-            // ƒR[ƒhƒy[ƒW‚ğ“¾‚é
+            // ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸ã‚’å¾—ã‚‹
             private static int GetMsCodePage(string filepath)
             {
 
@@ -1924,24 +1924,24 @@ namespace HmNetCOM
                     UTF-7 encode=5 codepage=65000
                     UTF-8 encode=6 codepage=65001
                     Unicode (Big-Endian) encode=7 codepage=1201
-                    ‰¢•¶ encode=8 codepage=1252
-                    ŠÈ‘Ìš’†‘Œê encode=9 codepage=936
-                    ”É‘Ìš’†‘Œê encode=10 codepage=950
-                    ŠØ‘Œê encode=11 codepage=949
-                    ŠØ‘Œê(Johab) encode=12 codepage=1361
-                    ’†‰›ƒˆ[ƒƒbƒpŒ¾Œê encode=13 codepage=1250
-                    ƒoƒ‹ƒgŒê encode=14 codepage=1257
-                    ƒMƒŠƒVƒƒŒê encode=15 codepage=1253
-                    ƒLƒŠƒ‹Œ¾Œê encode=16 codepage=1251
-                    ƒVƒ“ƒ{ƒ‹ encode=17 codepage=42
-                    ƒgƒ‹ƒRŒê encode=18 codepage=1254
-                    ƒwƒuƒ‰ƒCŒê encode=19 codepage=1255
-                    ƒAƒ‰ƒrƒAŒê encode=20 codepage=1256
-                    ƒ^ƒCŒê encode=21 codepage=874
-                    ƒxƒgƒiƒ€Œê encode=22 codepage=1258
+                    æ¬§æ–‡ encode=8 codepage=1252
+                    ç°¡ä½“å­—ä¸­å›½èª encode=9 codepage=936
+                    ç¹ä½“å­—ä¸­å›½èª encode=10 codepage=950
+                    éŸ“å›½èª encode=11 codepage=949
+                    éŸ“å›½èª(Johab) encode=12 codepage=1361
+                    ä¸­å¤®ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘è¨€èª encode=13 codepage=1250
+                    ãƒãƒ«ãƒˆèª encode=14 codepage=1257
+                    ã‚®ãƒªã‚·ãƒ£èª encode=15 codepage=1253
+                    ã‚­ãƒªãƒ«è¨€èª encode=16 codepage=1251
+                    ã‚·ãƒ³ãƒœãƒ« encode=17 codepage=42
+                    ãƒˆãƒ«ã‚³èª encode=18 codepage=1254
+                    ãƒ˜ãƒ–ãƒ©ã‚¤èª encode=19 codepage=1255
+                    ã‚¢ãƒ©ãƒ“ã‚¢èª encode=20 codepage=1256
+                    ã‚¿ã‚¤èª encode=21 codepage=874
+                    ãƒ™ãƒˆãƒŠãƒ èª encode=22 codepage=1258
                     Macintosh encode=23 codepage=0
                     OEM/DOS encode=24 codepage=0
-                    ‚»‚Ì‘¼ encode=25 codepage=0
+                    ãã®ä»– encode=25 codepage=0
                     UTF-32 encode=27 codepage=12000
                     UTF-32 (Big-Endian) encode=28 codepage=12001
                 */
@@ -1952,11 +1952,11 @@ namespace HmNetCOM
 
                 if (hidemaru_encode < key_encode_value_codepage_array.Length)
                 {
-                    // ”cˆ¬‚µ‚Ä‚¢‚éƒR[ƒhƒy[ƒW‚È‚Ì‚Å“ü‚ê‚Ä‚¨‚­
+                    // æŠŠæ¡ã—ã¦ã„ã‚‹ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸ãªã®ã§å…¥ã‚Œã¦ãŠã
                     result_codepage = key_encode_value_codepage_array[hidemaru_encode];
                     return result_codepage;
                 }
-                else // ’·‚³ˆÈã‚È‚çA—\Šú‚¹‚Ê–¢—ˆ‚Ìencode”Ô†‘Î‰
+                else // é•·ã•ä»¥ä¸Šãªã‚‰ã€äºˆæœŸã›ã¬æœªæ¥ã®encodeç•ªå·å¯¾å¿œ
                 {
                     return result_codepage;
                 }
@@ -1988,7 +1988,7 @@ namespace HmNetCOM
                 public HidemaruStreamReader(String path, int hm_encode = -1)
                 {
                     this.m_path = path;
-                    // w’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎA
+                    // æŒ‡å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€
                     if (hm_encode == -1)
                     {
                         hm_encode = GetHmEncode(path);
@@ -2036,12 +2036,12 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// GŠÛ‚Åƒtƒ@ƒCƒ‹‚ÌƒGƒ“ƒR[ƒh‚ğ”»’f‚µA‚»‚Ì”»’fŒ‹‰Ê‚ÉŠî‚Ã‚¢‚Äƒtƒ@ƒCƒ‹‚ÌƒeƒLƒXƒg“à—e‚ğæ“¾‚·‚éB
-            /// iGŠÛ‚Éİ’è‚³‚ê‚Ä‚¢‚é“à—e‚É]‚¤j
+            /// ç§€ä¸¸ã§ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’åˆ¤æ–­ã—ã€ãã®åˆ¤æ–­çµæœã«åŸºã¥ã„ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ†ã‚­ã‚¹ãƒˆå†…å®¹ã‚’å–å¾—ã™ã‚‹ã€‚
+            /// ï¼ˆç§€ä¸¸ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å†…å®¹ã«å¾“ã†ï¼‰
             /// </summary>
-            /// <param name = "filepath">“Ç‚İ‚İ‘ÎÛ‚Ìƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
-            /// <param name = "hm_encode">ƒGƒ“ƒR[ƒh(GŠÛƒ}ƒNƒ‚Ìuencodev‚Ì’l)‚ª•ª‚©‚Á‚Ä‚¢‚é‚È‚ç‚Îw’è‚·‚éAw’è‚µ‚È‚¢ê‡GŠÛAPI‚Ì©“®”»’è‚É”C‚¹‚éB</param>
-            /// <returns>IHidemaruStreamReaderŒ^‚ÌƒIƒuƒWƒFƒNƒgB</returns>
+            /// <param name = "filepath">èª­ã¿è¾¼ã¿å¯¾è±¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
+            /// <param name = "hm_encode">ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰(ç§€ä¸¸ãƒã‚¯ãƒ­ã®ã€Œencodeã€ã®å€¤)ãŒåˆ†ã‹ã£ã¦ã„ã‚‹ãªã‚‰ã°æŒ‡å®šã™ã‚‹ã€æŒ‡å®šã—ãªã„å ´åˆç§€ä¸¸APIã®è‡ªå‹•åˆ¤å®šã«ä»»ã›ã‚‹ã€‚</param>
+            /// <returns>IHidemaruStreamReaderå‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚</returns>
             public static IHidemaruStreamReader Open(string filepath, int hm_encode = -1)
             {
                 if (System.IO.File.Exists(filepath) == false)
@@ -2066,7 +2066,7 @@ namespace HmNetCOM
 
 <#
  var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
- var guildFile = this.Host.ResolvePath(".");
+ var guildFile = Host.ResolveAssemblyReference("$(ProjectDir)");
  try {
      HmMacroCOMVarGUID = System.IO.File.ReadAllText(guildFile + "\\HmNetCOM.guid");
      HmMacroCOMVarGUID = HmMacroCOMVarGUID.Trim();
@@ -2080,7 +2080,7 @@ namespace HmNetCOM
 
 namespace HmNetCOM
 {
-    // ‚±‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX‚ÍGŠÛƒ}ƒNƒ‚Ìjsmode(WebView2)‚ÅCOM‚ğŒÄ‚Ño‚·Û‚É•K—v
+    // ã“ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¯ç§€ä¸¸ãƒã‚¯ãƒ­ã®jsmode(WebView2)ã§COMã‚’å‘¼ã³å‡ºã™éš›ã«å¿…è¦
     interface IHmMacroCOMVar
     {
         object DllToMacro();
@@ -2098,7 +2098,7 @@ namespace HmNetCOM
 
 namespace HmNetCOM
 {
-    // GŠÛ‚ÌCOM‚©‚çŒÄ‚Ño‚µ‚ÄAƒ}ƒNƒÌCOM‚Æ‚¢‚Á‚½‚æ‚¤‚ÉAƒ}ƒNƒ‚ÆƒvƒƒOƒ‰ƒ€‚Å•Ï”’l‚ğŒİ‚¢‚É“`”À‚·‚é
+    // ç§€ä¸¸ã®COMã‹ã‚‰å‘¼ã³å‡ºã—ã¦ã€ãƒã‚¯ãƒ­â‡”COMã¨ã„ã£ãŸã‚ˆã†ã«ã€ãƒã‚¯ãƒ­ã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§å¤‰æ•°å€¤ã‚’äº’ã„ã«ä¼æ¬ã™ã‚‹
     [ComVisible(true)]
 #if (NET || NETCOREAPP3_1)
 #else
@@ -2135,9 +2135,9 @@ namespace HmNetCOM
 
         private void TraceMethodInfo(String assm_path, String class_name, String method_name)
         {
-            System.Diagnostics.Trace.WriteLine("ƒAƒZƒ“ƒuƒŠƒpƒX   :" + assm_path);
-            System.Diagnostics.Trace.WriteLine("–¼‘O‹óŠÔ.ƒNƒ‰ƒX–¼:" + class_name);
-            System.Diagnostics.Trace.WriteLine("ƒƒ\ƒbƒh–¼       :" + method_name);
+            System.Diagnostics.Trace.WriteLine("ã‚¢ã‚»ãƒ³ãƒ–ãƒªãƒ‘ã‚¹   :" + assm_path);
+            System.Diagnostics.Trace.WriteLine("åå‰ç©ºé–“.ã‚¯ãƒ©ã‚¹å:" + class_name);
+            System.Diagnostics.Trace.WriteLine("ãƒ¡ã‚½ãƒƒãƒ‰å       :" + method_name);
         }
         private static void TraceExceptionInfo(Exception e)
         {
@@ -2158,7 +2158,7 @@ namespace HmNetCOM
                     assm = Assembly.LoadFile(assm_path);
                     if (assm == null)
                     {
-                        System.Diagnostics.Trace.WriteLine("ƒ[ƒho—ˆ‚È‚¢");
+                        System.Diagnostics.Trace.WriteLine("ãƒ­ãƒ¼ãƒ‰å‡ºæ¥ãªã„");
                     }
                     else
                     {
@@ -2179,12 +2179,12 @@ namespace HmNetCOM
                 }
                 if (t == null)
                 {
-                    System.Diagnostics.Trace.WriteLine("MissingMethodException(ƒNƒ‰ƒX‚à‚µ‚­‚Íƒƒ\ƒbƒh‚ğŒ©‚Â‚¯‚é‚±‚Æ‚ªo—ˆ‚È‚¢):");
+                    System.Diagnostics.Trace.WriteLine("MissingMethodException(ã‚¯ãƒ©ã‚¹ã‚‚ã—ãã¯ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¦‹ã¤ã‘ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„):");
                     TraceMethodInfo(assm_path, class_name, method_name);
                     return null;
                 }
 
-                // ƒƒ\ƒbƒh‚Ì’è‹`ƒ^ƒCƒv‚ğ’T‚éB
+                // ãƒ¡ã‚½ãƒƒãƒ‰ã®å®šç¾©ã‚¿ã‚¤ãƒ—ã‚’æ¢ã‚‹ã€‚
                 MethodInfo m;
                 try
                 {
@@ -2192,11 +2192,11 @@ namespace HmNetCOM
                 }
                 catch (Exception ex)
                 {
-                    // Šî–{ƒR[ƒX‚¾‚Æˆê’v‚µ‚Ä‚È‚¢Œn‚Ì‰Â”\«‚âƒI[ƒo[ƒ[ƒh‚È‚Ç–¢‰ğŒˆƒGƒ‰[‚ğT‚¦‚Ä‚¨‚­
-                    // t->GetMethod(...)‚Í˜_—“I‚É‚Í•s—v‚¾‚ªAuƒGƒ‰[î•ñ‚Ì‚Æ‚«‚É‚í‚©‚è‚â‚·‚¢î•ñ‚ğ.NET‚É©“®‚Åo—Í‚µ‚Ä‚à‚ç‚¤v‚½‚ß‚Éƒ_ƒ~[‚ÅŒÄ‚Ño‚µ‚Ä‚¨‚­
+                    // åŸºæœ¬ã‚³ãƒ¼ã‚¹ã ã¨ä¸€è‡´ã—ã¦ãªã„ç³»ã®å¯èƒ½æ€§ã‚„ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰ãªã©æœªè§£æ±ºã‚¨ãƒ©ãƒ¼ã‚’æ§ãˆã¦ãŠã
+                    // t->GetMethod(...)ã¯è«–ç†çš„ã«ã¯ä¸è¦ã ãŒã€ã€Œã‚¨ãƒ©ãƒ¼æƒ…å ±ã®ã¨ãã«ã‚ã‹ã‚Šã‚„ã™ã„æƒ…å ±ã‚’.NETã«è‡ªå‹•ã§å‡ºåŠ›ã—ã¦ã‚‚ã‚‰ã†ã€ãŸã‚ã«ãƒ€ãƒŸãƒ¼ã§å‘¼ã³å‡ºã—ã¦ãŠã
                     method_ex = ex;
 
-                    // ƒI[ƒo[ƒ[ƒh‚È‚ç1‚Â‚É‰ğŒˆ‚Å‚«‚é‚æ‚¤‚ÉŒ^î•ñ‚àŠÜ‚ß‚Äm‚Íã‘‚«
+                    // ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰ãªã‚‰1ã¤ã«è§£æ±ºã§ãã‚‹ã‚ˆã†ã«å‹æƒ…å ±ã‚‚å«ã‚ã¦mã¯ä¸Šæ›¸ã
                     List<Type> args_types = new List<Type>();
                     args_types.Add(Type.GetType(message_param));
                     m = t.GetMethod(method_name, args_types.ToArray());
@@ -2205,21 +2205,21 @@ namespace HmNetCOM
                 Object o = null;
                 try
                 {
-                    // ƒI[ƒo[ƒ[ƒh‚È‚ç1‚Â‚É‰ğŒˆ‚Å‚«‚é‚æ‚¤‚ÉŒ^î•ñ‚àŠÜ‚ß‚Äm‚Íã‘‚«
+                    // ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰ãªã‚‰1ã¤ã«è§£æ±ºã§ãã‚‹ã‚ˆã†ã«å‹æƒ…å ±ã‚‚å«ã‚ã¦mã¯ä¸Šæ›¸ã
                     List<Object> args_values = new List<Object>();
                     args_values.Add(message_param);
                     o = m.Invoke(null, args_values.ToArray());
                 }
                 catch (Exception)
                 {
-                    System.Diagnostics.Trace.WriteLine("w’è‚Ìƒƒ\ƒbƒh‚ÌÀsA—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+                    System.Diagnostics.Trace.WriteLine("æŒ‡å®šã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å®Ÿè¡Œæ™‚ã€ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
                     throw;
                 }
                 return o;
             }
             catch (Exception e)
             {
-                System.Diagnostics.Trace.WriteLine("w’è‚ÌƒAƒZƒ“ƒuƒŠ‚âƒƒ\ƒbƒh‚ğ“Á’è‚·‚é‘O‚ÉA—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+                System.Diagnostics.Trace.WriteLine("æŒ‡å®šã®ã‚¢ã‚»ãƒ³ãƒ–ãƒªã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç‰¹å®šã™ã‚‹å‰ã«ã€ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
                 TraceMethodInfo(assm_path, class_name, method_name);
                 if (method_ex != null)
                 {
@@ -2349,15 +2349,15 @@ namespace HmNetCOM
             public static partial class Exec
             {
                 /// <summary>
-                /// w’è‚ÌC#‚Ìstaticƒƒ\ƒbƒh‚ğuV‚½‚Èƒ}ƒNƒÀs‹óŠÔv‚Æ‚µ‚ÄŒÄ‚Ño‚·
+                /// æŒ‡å®šã®C#ã®staticãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã€Œæ–°ãŸãªãƒã‚¯ãƒ­å®Ÿè¡Œç©ºé–“ã€ã¨ã—ã¦å‘¼ã³å‡ºã™
                 /// </summary>
-                /// <param name = "message_parameter">•¶š—ñƒpƒ‰ƒ[ƒ^</param>
-                /// <param name = "delegate_method">ŒÄ‚Ño‚µ‚½‚¢C#ƒƒ\ƒbƒhupublic methodname(string message_parameter)‚ÌŒ^v‚É]‚¤ƒƒ\ƒbƒh‚Å‚ ‚é‚±‚Æ</param>
+                /// <param name = "message_parameter">æ–‡å­—åˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+                /// <param name = "delegate_method">å‘¼ã³å‡ºã—ãŸã„C#ãƒ¡ã‚½ãƒƒãƒ‰ã€Œpublic methodname(string message_parameter)ã®å‹ã€ã«å¾“ã†ãƒ¡ã‚½ãƒƒãƒ‰ã§ã‚ã‚‹ã“ã¨</param>
                 /// <returns>(Result, Message, Error)</returns>
                 public static IResult Method(string message_parameter, Delegate delegate_method)
                 {
                     string parameter = message_parameter;
-                    // “n‚³‚ê‚½ƒƒ\ƒbƒh‚ª©•ª©g‚Ìdll‚ÆˆÙ‚È‚é‚Ì‚Íƒ_ƒ
+                    // æ¸¡ã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãŒè‡ªåˆ†è‡ªèº«ã®dllã¨ç•°ãªã‚‹ã®ã¯ãƒ€ãƒ¡
                     if (delegate_method.Method.DeclaringType.Assembly.Location != System.Reflection.Assembly.GetExecutingAssembly().Location)
                     {
                         string message_no_dll_myself = "The Delegate method must in " + System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -2402,7 +2402,7 @@ namespace HmNetCOM
 
         public static partial class Macro
         {
-            // ƒ}ƒNƒ‚Å‚Ì–â‚¢‡‚í‚¹Œ‹‰ÊŒn
+            // ãƒã‚¯ãƒ­ã§ã®å•ã„åˆã‚ã›çµæœç³»
             public interface IStatementResult
             {
                 int Result { get; }
@@ -2424,16 +2424,16 @@ namespace HmNetCOM
                     this.Result = Result;
                     this.Message = Message;
                     this.Error = Error;
-                    this.Args = new List<object>(Args); // ƒRƒs[“n‚µ
+                    this.Args = new List<object>(Args); // ã‚³ãƒ”ãƒ¼æ¸¡ã—
                 }
             }
 
             private static int statement_base_random = 0;
             /// <summary>
-            /// GŠÛƒ}ƒNƒ‚ÌŠÖ”‚Ì‚æ‚¤‚Èu–½—ß•¶v‚ğÀs
+            /// ç§€ä¸¸ãƒã‚¯ãƒ­ã®é–¢æ•°ã®ã‚ˆã†ãªã€Œå‘½ä»¤æ–‡ã€ã‚’å®Ÿè¡Œ
             /// </summary>
-            /// <param name = "statement_name">iŠÖ”‚Ì‚æ‚¤‚Èj–½—ß•¶–¼</param>
-            /// <param name = "args">–½—ß•¶‚Ìˆø”</param>
+            /// <param name = "statement_name">ï¼ˆé–¢æ•°ã®ã‚ˆã†ãªï¼‰å‘½ä»¤æ–‡å</param>
+            /// <param name = "args">å‘½ä»¤æ–‡ã®å¼•æ•°</param>
             /// <returns>(Result, Args, Message, Error)</returns>
             internal static IStatementResult Statement(string statement_name, params object[] args)
             {
@@ -2446,19 +2446,19 @@ namespace HmNetCOM
 
                 List<KeyValuePair<string, object>> arg_list = SetMacroVarAndMakeMacroKeyArray(args, statement_base_random);
 
-                // key‚ğƒŠƒXƒg‰»
+                // keyã‚’ãƒªã‚¹ãƒˆåŒ–
                 var arg_keys = new List<String>();
                 foreach (var l in arg_list)
                 {
                     arg_keys.Add(l.Key);
                 }
 
-                // ‚»‚ê‚ğu,v‚ÅŒq‚°‚é
+                // ãã‚Œã‚’ã€Œ,ã€ã§ç¹‹ã’ã‚‹
                 string args_string = String.Join(", ", arg_keys);
-                // ‚»‚ê‚ğw’è‚Ìu•¶v‚ÅÀs‚·‚éŒ`
+                // ãã‚Œã‚’æŒ‡å®šã®ã€Œæ–‡ã€ã§å®Ÿè¡Œã™ã‚‹å½¢
                 string expression = $"{funcname} {args_string};\n";
 
-                // Às‚·‚é
+                // å®Ÿè¡Œã™ã‚‹
                 IResult ret = Macro.Eval(expression);
  
                 int macro_result = ret.Result;
@@ -2466,15 +2466,15 @@ namespace HmNetCOM
                 {
                     try
                     {
-                        Object tmp_var = Macro.Var["result"]; // ‚±‚Ì’†‚ÌGetMethod‚Å—áŠO‚ª”­¶‚·‚é‰Â”\«‚ ‚è
+                        Object tmp_var = Macro.Var["result"]; // ã“ã®ä¸­ã®GetMethodã§ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã‚ã‚Š
 
                         if (IntPtr.Size == 4)
                         {
-                            macro_result = (Int32)tmp_var + 0; // ŠmÀ‚É•¡»‚ğ
+                            macro_result = (Int32)tmp_var + 0; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                         }
                         else
                         {
-                            Int64 macro_result64 = (Int64)tmp_var + 0; // ŠmÀ‚É•¡»‚ğ
+                            Int64 macro_result64 = (Int64)tmp_var + 0; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                             Int32 macro_result32 = (Int32)HmClamp<Int64>(macro_result64, Int32.MinValue, Int32.MaxValue);
                             macro_result = (Int32)macro_result32;
                         }
@@ -2482,10 +2482,10 @@ namespace HmNetCOM
                     }
                 }
 
-                // ¬”Û‚àŠÜ‚ß‚ÄŒ‹‰Ê‚ğ“ü‚ê‚éB
+                // æˆå¦ã‚‚å«ã‚ã¦çµæœã‚’å…¥ã‚Œã‚‹ã€‚
                 IStatementResult result = new TStatementResult(macro_result, ret.Message, ret.Error, new List<Object>());
 
-                // g‚Á‚½‚Ì‚Åíœ
+                // ä½¿ã£ãŸã®ã§å‰Šé™¤
                 for (int ix = 0; ix < arg_list.Count; ix++)
                 {
                     var l = arg_list[ix];
@@ -2546,7 +2546,7 @@ namespace HmNetCOM
                 return result;
             }
 
-            // ƒ}ƒNƒ‚Å‚Ì–â‚¢‡‚í‚¹Œ‹‰ÊŒn
+            // ãƒã‚¯ãƒ­ã§ã®å•ã„åˆã‚ã›çµæœç³»
             public interface IFunctionResult
             {
                 object Result { get; }
@@ -2567,16 +2567,16 @@ namespace HmNetCOM
                     this.Result = Result;
                     this.Message = Message;
                     this.Error = Error;
-                    this.Args = new List<object>(Args); // ƒRƒs[“n‚µ
+                    this.Args = new List<object>(Args); // ã‚³ãƒ”ãƒ¼æ¸¡ã—
                 }
             }
 
             private static int funciton_base_random = 0;
             /// <summary>
-            /// GŠÛƒ}ƒNƒ‚ÌuŠÖ”v‚ğÀs
+            /// ç§€ä¸¸ãƒã‚¯ãƒ­ã®ã€Œé–¢æ•°ã€ã‚’å®Ÿè¡Œ
             /// </summary>
-            /// <param name = "func_name">ŠÖ”–¼</param>
-            /// <param name = "args">ŠÖ”‚Ìˆø”</param>
+            /// <param name = "func_name">é–¢æ•°å</param>
+            /// <param name = "args">é–¢æ•°ã®å¼•æ•°</param>
             /// <returns>(Result, Args, Message, Error)</returns>
             public static IFunctionResult Function(string func_name, params object[] args)
             {
@@ -2584,11 +2584,11 @@ namespace HmNetCOM
             }
 
             /// <summary>
-            /// GŠÛƒ}ƒNƒ‚ÌuŠÖ”v‚ğÀsBŠÖ”‚¾‚¯‚¾‚Æ•Ô‚è’l‚ª•s–¾‚Èê‡‚É‚±‚Ì<T>•t‚«‚ğg—p‚·‚éB
+            /// ç§€ä¸¸ãƒã‚¯ãƒ­ã®ã€Œé–¢æ•°ã€ã‚’å®Ÿè¡Œã€‚é–¢æ•°ã ã‘ã ã¨è¿”ã‚Šå€¤ãŒä¸æ˜ãªå ´åˆã«ã“ã®<T>ä»˜ãã‚’ä½¿ç”¨ã™ã‚‹ã€‚
             /// </summary>
-            /// <param name = "func_name">ŠÖ”–¼</param>
-            /// <param name = "args">ŠÖ”‚Ìˆø”</param>
-            /// <typeparam name="T">String | int | long | IntPtr | doubleBŠÖ”’P‘Ì‚¾‚¯Šm’è‚³‚ê‚È‚¢•Ô‚è’l‚ÌŒ^‚ğu•¶š—ñƒ^ƒCƒvv‚©u®”ƒ^ƒCƒvv‚©‚ÉU‚è•ª‚¯’¼‚·B</typeparam>
+            /// <param name = "func_name">é–¢æ•°å</param>
+            /// <param name = "args">é–¢æ•°ã®å¼•æ•°</param>
+            /// <typeparam name="T">String | int | long | IntPtr | doubleã€‚é–¢æ•°å˜ä½“ã ã‘ç¢ºå®šã•ã‚Œãªã„è¿”ã‚Šå€¤ã®å‹ã‚’ã€Œæ–‡å­—åˆ—ã‚¿ã‚¤ãƒ—ã€ã‹ã€Œæ•´æ•°ã‚¿ã‚¤ãƒ—ã€ã‹ã«æŒ¯ã‚Šåˆ†ã‘ç›´ã™ã€‚</typeparam>
             /// <returns>(Result, Args, Message, Error)</returns>
             public static IFunctionResult Function<T>(string func_name, params object[] args)
             {
@@ -2606,16 +2606,16 @@ namespace HmNetCOM
 
                 List<KeyValuePair<string, object>> arg_list = SetMacroVarAndMakeMacroKeyArray(args, funciton_base_random);
 
-                // key‚ğƒŠƒXƒg‰»
+                // keyã‚’ãƒªã‚¹ãƒˆåŒ–
                 var arg_keys = new List<String>();
                 foreach (var l in arg_list)
                 {
                     arg_keys.Add(l.Key);
                 }
 
-                // ‚»‚ê‚ğu,v‚ÅŒq‚°‚é
+                // ãã‚Œã‚’ã€Œ,ã€ã§ç¹‹ã’ã‚‹
                 string args_string = String.Join(", ", arg_keys);
-                // ‚»‚ê‚ğw’è‚ÌuŠÖ”v‚ÅÀs‚·‚éŒ`
+                // ãã‚Œã‚’æŒ‡å®šã®ã€Œé–¢æ•°ã€ã§å®Ÿè¡Œã™ã‚‹å½¢
                 string expression = "";
 
                 string result_temp = "";
@@ -2643,26 +2643,26 @@ namespace HmNetCOM
                 Object ret = null;
                 try
                 {
-                    ret = Macro.Var[expression]; // ‚±‚Ì’†‚ÌGetMethod‚Å—áŠO‚ª”­¶‚·‚é‰Â”\«‚ ‚è
+                    ret = Macro.Var[expression]; // ã“ã®ä¸­ã®GetMethodã§ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã‚ã‚Š
 
                     if (ret.GetType().Name != "String")
                     {
                         if (IntPtr.Size == 4)
                         {
-                            result.Result = (Int32)ret + 0; // ŠmÀ‚É•¡»‚ğ
+                            result.Result = (Int32)ret + 0; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                             result.Message = "";
                             result.Error = null;
                         }
                         else
                         {
-                            result.Result = (Int64)ret + 0; // ŠmÀ‚É•¡»‚ğ
+                            result.Result = (Int64)ret + 0; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                             result.Message = "";
                             result.Error = null;
                         }
                     }
                     else
                     {
-                        result.Result = (String)ret + ""; // ŠmÀ‚É•¡»‚ğ
+                        result.Result = (String)ret + ""; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                         result.Message = "";
                         result.Error = null;
                     }
@@ -2691,7 +2691,7 @@ namespace HmNetCOM
                     }
                 }
 
-                // g‚Á‚½‚Ì‚Åíœ
+                // ä½¿ã£ãŸã®ã§å‰Šé™¤
                 for (int ix = 0; ix < arg_list.Count; ix++)
                 {
                     var l = arg_list[ix];
@@ -2761,7 +2761,7 @@ namespace HmNetCOM
                     bool success = false;
                     cur_random++;
                     object normalized_arg = null;
-                    // BooleanŒ^‚Å‚ ‚ê‚ÎATrue:1 Flase:0‚Éƒ}ƒbƒsƒ“ƒO‚·‚é
+                    // Booleanå‹ã§ã‚ã‚Œã°ã€True:1 Flase:0ã«ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹
                     if (value is bool)
                     {
                         success = true;
@@ -2781,7 +2781,7 @@ namespace HmNetCOM
                         normalized_arg = value.ToString();
                     }
 
-                    // ”z—ñ‚Ìê‡‚ğ’Ç‰Á
+                    // é…åˆ—ã®å ´åˆã‚’è¿½åŠ 
                     if (!success)
                     {
                         if (value.GetType() == new List<int>().GetType())
@@ -2809,14 +2809,14 @@ namespace HmNetCOM
                             normalized_arg = new List<String>((List<String>)value);
                         }
                     }
-                    // ˆÈã”z—ñ‚Ìê‡‚ğ’Ç‰Á
+                    // ä»¥ä¸Šé…åˆ—ã®å ´åˆã‚’è¿½åŠ 
 
                     if (!success)
                     {
                         // 32bit
                         if (IntPtr.Size == 4)
                         {
-                            // ‚Ü‚¸‚Í®”‚Åƒgƒ‰ƒC
+                            // ã¾ãšã¯æ•´æ•°ã§ãƒˆãƒ©ã‚¤
                             Int32 itmp = 0;
                             success = Int32.TryParse(value.ToString(), out itmp);
 
@@ -2828,7 +2828,7 @@ namespace HmNetCOM
 
                             else
                             {
-                                // Ÿ‚É­”‚Åƒgƒ‰ƒC
+                                // æ¬¡ã«å°‘æ•°ã§ãƒˆãƒ©ã‚¤
                                 Double dtmp = 0;
                                 if (IsDoubleNumeric(value))
                                 {
@@ -2855,7 +2855,7 @@ namespace HmNetCOM
                         // 64bit
                         else
                         {
-                            // ‚Ü‚¸‚Í®”‚Åƒgƒ‰ƒC
+                            // ã¾ãšã¯æ•´æ•°ã§ãƒˆãƒ©ã‚¤
                             Int64 itmp = 0;
                             success = Int64.TryParse(value.ToString(), out itmp);
 
@@ -2867,7 +2867,7 @@ namespace HmNetCOM
 
                             else
                             {
-                                // Ÿ‚É­”‚Åƒgƒ‰ƒC
+                                // æ¬¡ã«å°‘æ•°ã§ãƒˆãƒ©ã‚¤
                                 Double dtmp = 0;
                                 if (IsDoubleNumeric(value))
                                 {
@@ -2892,7 +2892,7 @@ namespace HmNetCOM
                     }
 
 
-                    // ¬Œ÷‚µ‚È‚©‚Á‚½
+                    // æˆåŠŸã—ãªã‹ã£ãŸ
                     if (!success)
                     {
                         normalized_arg = value.ToString();
@@ -2958,11 +2958,11 @@ namespace HmNetCOM
             internal sealed class TMacroVar
             {
                 /// <summary>
-                /// ‘ÎÛ‚ÌuGŠÛƒ}ƒNƒ•Ï”–¼v‚Ö‚Ì“Ç‚İ‘‚«
+                /// å¯¾è±¡ã®ã€Œç§€ä¸¸ãƒã‚¯ãƒ­å¤‰æ•°åã€ã¸ã®èª­ã¿æ›¸ã
                 /// </summary>
-                /// <param name = "var_name">•Ï”‚ÌƒVƒ“ƒ{ƒ‹–¼</param>
-                /// <param name = "value">‘‚«‚İ‚Ìê‡A‘ã“ü‚·‚é’l</param>
-                /// <returns>“Ç‚İæ‚è‚Ìê‡‚ÍA‘ÎÛ‚Ì•Ï”‚Ì’l</returns>
+                /// <param name = "var_name">å¤‰æ•°ã®ã‚·ãƒ³ãƒœãƒ«å</param>
+                /// <param name = "value">æ›¸ãè¾¼ã¿ã®å ´åˆã€ä»£å…¥ã™ã‚‹å€¤</param>
+                /// <returns>èª­ã¿å–ã‚Šã®å ´åˆã¯ã€å¯¾è±¡ã®å¤‰æ•°ã®å€¤</returns>
                 public Object this[String var_name]
                 {
                     get
@@ -2981,7 +2981,7 @@ namespace HmNetCOM
                     {
                         Object result = new Object();
 
-                        // BooleanŒ^‚Å‚ ‚ê‚ÎATrue:1 Flase:0‚Éƒ}ƒbƒsƒ“ƒO‚·‚é
+                        // Booleanå‹ã§ã‚ã‚Œã°ã€True:1 Flase:0ã«ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹
                         if (value is bool)
                         {
                             if ((Boolean)value == true)
@@ -2997,7 +2997,7 @@ namespace HmNetCOM
                         // 32bit
                         if (IntPtr.Size == 4)
                         {
-                            // ‚Ü‚¸‚Í®”‚Åƒgƒ‰ƒC
+                            // ã¾ãšã¯æ•´æ•°ã§ãƒˆãƒ©ã‚¤
                             Int32 itmp = 0;
                             bool success = Int32.TryParse(value.ToString(), out itmp);
 
@@ -3009,7 +3009,7 @@ namespace HmNetCOM
 
                             else
                             {
-                                // Ÿ‚É­”‚Åƒgƒ‰ƒC
+                                // æ¬¡ã«å°‘æ•°ã§ãƒˆãƒ©ã‚¤
                                 Double dtmp = 0;
                                 if (IsDoubleNumeric(value))
                                 {
@@ -3036,7 +3036,7 @@ namespace HmNetCOM
                         // 64bit
                         else
                         {
-                            // ‚Ü‚¸‚Í®”‚Åƒgƒ‰ƒC
+                            // ã¾ãšã¯æ•´æ•°ã§ãƒˆãƒ©ã‚¤
                             Int64 itmp = 0;
                             bool success = Int64.TryParse(value.ToString(), out itmp);
 
@@ -3048,7 +3048,7 @@ namespace HmNetCOM
 
                             else
                             {
-                                // Ÿ‚É­”‚Åƒgƒ‰ƒC
+                                // æ¬¡ã«å°‘æ•°ã§ãƒˆãƒ©ã‚¤
                                 Double dtmp = 0;
                                 if (IsDoubleNumeric(value))
                                 {
@@ -3093,16 +3093,16 @@ namespace HmNetCOM
                     {
                         if (IntPtr.Size == 4)
                         {
-                            return (Int32)ret + 0; // ŠmÀ‚É•¡»‚ğ
+                            return (Int32)ret + 0; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                         }
                         else
                         {
-                            return (Int64)ret + 0; // ŠmÀ‚É•¡»‚ğ
+                            return (Int64)ret + 0; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                         }
                     }
                     else
                     {
-                        return (String)ret + ""; // ŠmÀ‚É•¡»‚ğ
+                        return (String)ret + ""; // ç¢ºå®Ÿã«è¤‡è£½ã‚’
                     }
                 }
             }
