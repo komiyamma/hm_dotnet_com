@@ -4,6 +4,10 @@
  * under the MIT License
  **/
 
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ import namespace="System.IO" #>
+<#@ output extension=".cs" #>
+
 using System;
 using System.IO;
 using System.Text;
@@ -2064,7 +2068,7 @@ namespace HmNetCOM
  var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
  var guildFile = this.Host.ResolvePath(".");
  try {
-     HmMacroCOMVarGUID = File.ReadAllText(guildFile + "\\HmNetCOM.guid");
+     HmMacroCOMVarGUID = System.IO.File.ReadAllText(guildFile + "\\HmNetCOM.guid");
      HmMacroCOMVarGUID = HmMacroCOMVarGUID.Trim();
  } catch(Exception) {
      try {
