@@ -65,16 +65,6 @@
 
 <#
  var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
- var guildFile = this.Host.ResolvePath(".");
- try {
-     HmMacroCOMVarGUID = File.ReadAllText(guildFile + "\\HmNetCOM.guid");
-     HmMacroCOMVarGUID = HmMacroCOMVarGUID.Trim();
- } catch(Exception) {
-     try {
-         File.WriteAllText(guildFile + "\\HmNetCOM.guid", HmMacroCOMVarGUID);
-     } catch {
-     }
- }
  var lines5 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMMacroExtension.cs"));
  string source5 = "";
  foreach(var line in lines5) {

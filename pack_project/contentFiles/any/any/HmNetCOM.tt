@@ -1,5 +1,5 @@
 /*
- * HmNetCOM ver 2.073
+ * HmNetCOM ver 2.074
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -2062,6 +2062,16 @@ namespace HmNetCOM
 
 <#
  var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
+ var guildFile = this.Host.ResolvePath(".");
+ try {
+     HmMacroCOMVarGUID = File.ReadAllText(guildFile + "\\HmNetCOM.guid");
+     HmMacroCOMVarGUID = HmMacroCOMVarGUID.Trim();
+ } catch(Exception) {
+     try {
+         File.WriteAllText(guildFile + "\\HmNetCOM.guid", HmMacroCOMVarGUID);
+     } catch {
+     }
+ }
 #>
 
 namespace HmNetCOM
