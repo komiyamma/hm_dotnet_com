@@ -38,11 +38,27 @@ namespace HmNetCOM
                 }
             }
 
+            /// <summary>
+            /// マクロの静的な変数
+            /// </summary>
+            internal static TStaticVar StaticVar = new TStaticVar();
 
             /// <summary>
             /// マクロの静的な変数
             /// </summary>
-            public static partial class StaticVar {
+            internal partial class TStaticVar { 
+
+                /// <summary>
+                /// マクロの静的な変数の値(文字列)の読み書き
+                /// </summary>
+                /// <param name = "name">変数名</param>
+                /// <param name = "value">書き込みの場合、代入する値</param>
+                /// <param name = "sharedflag">共有フラグ</param>
+                /// <returns>対象の静的変数名(name)に格納されている文字列</returns>
+                public string this[string name, int sharedflag] {
+                    get { return GetStaticVariable(name, sharedflag); }
+                    set { SetStaticVariable(name, value, sharedflag); }
+                }
 
                 /// <summary>
                 /// マクロの静的な変数の値(文字列)を取得する
