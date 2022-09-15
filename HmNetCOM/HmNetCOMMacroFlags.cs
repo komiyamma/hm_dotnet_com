@@ -18,7 +18,7 @@ namespace HmNetCOM
         {
             public static partial class Flags {
 
-                public partial class Encode {
+                public static partial class Encode {
                     //OPENFILE等のENCODE相当
                     public const int Sjis = 0x01;
                     public const int Utf16 = 0x02;
