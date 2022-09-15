@@ -57,13 +57,13 @@ namespace HmNetCOM
                     //searchoption(grepして置換関係)
                     const int BackUp =               0x04000000;
                     const int Preview =              0x08000000;
-/*
+                    
+                    // searchoption2を使うよ、というフラグ。なんと、int32_maxを超えているので、特殊な処理が必要。
                     int FEnableSearchOption2 {
                         get {
                             if (IntPtr.Size == 4) { return -0x80000000; } else { return 0x80000000; }
                         }
                     };
-*/
                 }
 
 
