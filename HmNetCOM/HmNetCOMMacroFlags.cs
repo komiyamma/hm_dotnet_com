@@ -103,7 +103,7 @@ namespace HmNetCOM
                     public const int Preview =              0x08000000;
                     
                     // searchoption2を使うよ、というフラグ。なんと、int32_maxを超えているので、特殊な処理が必要。
-                    static long FEnableSearchOption2
+                    public static long FEnableSearchOption2
                     {
                         get
                         {
