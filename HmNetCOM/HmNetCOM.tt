@@ -64,16 +64,29 @@
 <#= source4 #>
 
 <#
- var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
- var lines5 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMMacroExtension.cs"));
+ var lines5 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMMacroFlags.cs"));
  string source5 = "";
  foreach(var line in lines5) {
      if (line.StartsWith ("using ")) {
      } else {
-        string line5 = line.Replace("HmMacroCOMVarGUID", HmMacroCOMVarGUID);
-        source5 += line5 + "\r\n";
+        source5 += line + "\r\n";
      }
  }
 #>
 
 <#= source5 #>
+
+<#
+ var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
+ var lines6 = File.ReadAllLines(this.Host.ResolvePath("HmNetCOMMacroExtension.cs"));
+ string source6 = "";
+ foreach(var line in lines6) {
+     if (line.StartsWith ("using ")) {
+     } else {
+        string line6 = line.Replace("HmMacroCOMVarGUID", HmMacroCOMVarGUID);
+        source6 += line6 + "\r\n";
+     }
+ }
+#>
+
+<#= source6 #>
