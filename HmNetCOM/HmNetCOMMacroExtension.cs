@@ -747,8 +747,29 @@ namespace HmNetCOM
                         {
                             // まずは整数でトライ
                             Int32 itmp = 0;
-                            success = Int32.TryParse(value.ToString(), out itmp);
+                            try
+                            {
+                                // intでもIntPtrでもないならば...
+                                if (value.GetType() != typeof(int).GetType() && value.GetType() != typeof(IntPtr).GetType())
+                                {
+                                    int itmp_cycle_bit = 0;
+                                    long ltmp = 0;
+                                    bool suc = Int64.TryParse(value.ToString(), out ltmp);
+                                    if (suc)
+                                    {
+                                        success = LongToInt((long)ltmp, out itmp_cycle_bit);
+                                        itmp = itmp_cycle_bit;
+                                    }
+                                }
+                            }
+                            catch (Exception)
+                            {
 
+                            }
+                            if (!success)
+                            {
+                                success = Int32.TryParse(value.ToString(), out itmp);
+                            }
                             if (success == true)
                             {
                                 itmp = HmClamp<Int32>(itmp, Int32.MinValue, Int32.MaxValue);
@@ -926,9 +947,33 @@ namespace HmNetCOM
                         // 32bit
                         if (IntPtr.Size == 4)
                         {
+
                             // まずは整数でトライ
                             Int32 itmp = 0;
-                            bool success = Int32.TryParse(value.ToString(), out itmp);
+                            bool success = false;
+                            try
+                            {
+                                // intでもIntPtrでもないならば...
+                                if (value.GetType() != typeof(int).GetType() && value.GetType() != typeof(IntPtr).GetType())
+                                {
+                                    int itmp_cycle_bit = 0;
+                                    long ltmp = 0;
+                                    bool suc = Int64.TryParse(value.ToString(), out ltmp);
+                                    if (suc)
+                                    {
+                                        success = LongToInt((long)ltmp, out itmp_cycle_bit);
+                                        itmp = itmp_cycle_bit;
+                                    }
+                                }
+                            }
+                            catch(Exception)
+                            {
+
+                            }
+                            if (!success)
+                            {
+                                success = Int32.TryParse(value.ToString(), out itmp);
+                            }
 
                             if (success == true)
                             {
