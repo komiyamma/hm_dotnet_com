@@ -171,6 +171,9 @@ namespace HmNetCOM
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TSetStaticVariable([MarshalAs(UnmanagedType.LPWStr)] String pwszSymbolName, [MarshalAs(UnmanagedType.LPWStr)] String pwszValue, int sharedMemoryFlag);
 
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        private delegate int TGetInputStates();
+
         // 秀丸本体から出ている関数群
         private static TGetCurrentWindowHandle pGetCurrentWindowHandle;
         private static TGetTotalTextUnicode pGetTotalTextUnicode;
@@ -184,6 +187,7 @@ namespace HmNetCOM
         private static TLoadFileUnicode pLoadFileUnicode;
         private static TGetStaticVariable pGetStaticVariable;
         private static TSetStaticVariable pSetStaticVariable;
+        private static TGetInputStates pGetInputStates;
 
         // 秀丸本体のexeを指すモジュールハンドル
         private static UnManagedDll hmExeHandle;
@@ -216,6 +220,10 @@ namespace HmNetCOM
                     {
                         pGetStaticVariable = hmExeHandle.GetProcDelegate<TGetStaticVariable>("Hidemaru_GetStaticVariable");
                         pSetStaticVariable = hmExeHandle.GetProcDelegate<TSetStaticVariable>("Hidemaru_SetStaticVariable");
+                    }
+                    if (Version >= 919)
+                    {
+                        pGetInputStates = hmExeHandle.GetProcDelegate<TGetInputStates>("Hidemaru_GetInputStates");
                     }
 
                 }

@@ -314,6 +314,38 @@ namespace HmNetCOM
                 }
             }
 
+            /// <summary>
+            /// <para>各種の入力ができるかどうかを判断するための状態を表します。（V9.19以降）</para>
+            /// <para>以下の値の論理和です。</para>
+            /// <para>0x0002 ウィンドウ移動/サイズ変更中</para>
+            /// <para>0x0004 メニュー操作中</para>
+            /// <para>0x0008 システムメニュー操作中</para>
+            /// <para>0x0010 ポップアップメニュー操作中</para>
+            /// <para>0x0100 IME入力中</para>
+            /// <para>0x0200 何らかのダイアログ表示中</para>
+            /// <para>0x0400 ウィンドウがDisable状態</para>
+            /// <para>0x0800 非アクティブなタブまたは非表示のウィンドウ</para>
+            /// <para>0x1000 検索ダイアログの疑似モードレス状態</para>
+            /// <para>0x2000 なめらかスクロール中</para>
+            /// </summary>
+            /// <returns>一回の操作でも数カウント上がる。32bitの値を超えると一周する。初期値は1以上。</returns>
+            public static int InputStates
+            {
+                get
+                {
+                    if (Version < 919.11)
+                    {
+                        throw new MissingMethodException("Hidemaru_Edit_InputStates");
+                    }
+                    if (pGetInputStates == null)
+                    {
+                        throw new MissingMethodException("Hidemaru_Edit_InputStates");
+                    }
+
+                    return pGetInputStates();
+                }
+            }
+
         }
     }
 }

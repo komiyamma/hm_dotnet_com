@@ -4,24 +4,24 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>HmNetCOM</AssemblyName>
     <RootNamespace>Hidemaru</RootNamespace>
-    <Version>2.0.7.8</Version>
+    <Version>2.0.8.0</Version>
     <Copyright>Copyright © 2021-2022 Akitsugu Komiyama</Copyright>
     <NeutralLanguage>ja-JP</NeutralLanguage>
     <PackageId>HmNetCOM</PackageId>
     <Authors>Akitsugu Komiyama</Authors>
     <Company>Komiyamma</Company>
     <Product>HmNetCOM</Product>
-    <AssemblyVersion>2.0.7.8</AssemblyVersion>
+    <AssemblyVersion>2.0.8.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-    <DefineConstants>TRACE;SMALLFILESIZE</DefineConstants>
+    <DefineConstants>TRACE;</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;BUILD_DLL;SMALLFILESIZE</DefineConstants>
+    <DefineConstants>TRACE;BUILD_DLL;</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,6 +42,15 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="HmNetCOM.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HmNetCOM.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 
