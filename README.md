@@ -1,6 +1,6 @@
 # Hm.NetCOM
 
-[![Hm.NetCOM v2.0.7](https://img.shields.io/badge/Hm.NetCOM-v2.0.7-6479ff.svg)](https://github.com/komiyamma/hidemaru_dotnet_com/releases)
+[![Hm.NetCOM v2.0.8](https://img.shields.io/badge/Hm.NetCOM-v2.0.8-6479ff.svg)](https://github.com/komiyamma/hidemaru_dotnet_com/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Hidemaru 8.98](https://img.shields.io/badge/Hidemaru-v8.98-6479ff.svg)
 ![.NET Framework 4.8](https://img.shields.io/badge/.NET_Framework-4.7_－_4.8-6479ff.svg)
