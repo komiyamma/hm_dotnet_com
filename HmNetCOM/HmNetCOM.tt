@@ -1,5 +1,5 @@
 /*
- * HmNetCOM ver 2.080
+ * HmNetCOM ver 2.081
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
@@ -7,6 +7,10 @@
 <#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ import namespace="System.IO" #>
 <#@ output extension=".cs" #>
+
+#if NET
+#nullable disable
+#endif
 
 <#@ include file="HmNetCOMPane.cs" #>
 
@@ -90,3 +94,7 @@
 #>
 
 <#= source6 #>
+
+#if NET
+#nullable enable
+#endif
