@@ -66,7 +66,7 @@ namespace HmNetCOM
                 /// <param name = "name">変数名</param>
                 /// <param name = "sharedflag">共有フラグ</param>
                 /// <returns>対象の静的変数名(name)に格納されている文字列</returns>
-                public static string Get(string name, int sharedflag)
+                public string Get(string name, int sharedflag)
                 {
                     return GetStaticVariable(name, sharedflag);
                 }
@@ -78,7 +78,7 @@ namespace HmNetCOM
                 /// <param name = "value">設定する値(文字列)</param>
                 /// <param name = "sharedflag">共有フラグ</param>
                 /// <returns>取得に成功すれば真、失敗すれば偽が返る</returns>
-                public static bool Set(string name, string value, int sharedflag)
+                public bool Set(string name, string value, int sharedflag)
                 {
                     var ret = SetStaticVariable(name, value, sharedflag);
                     if (ret != 0)
