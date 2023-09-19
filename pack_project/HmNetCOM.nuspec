@@ -3,7 +3,7 @@
   <metadata>
     <id>HmNetCOM</id>
     <title>Hm.NetCOM</title>
-    <version>2.0.8.2</version>
+    <version>2.0.8.3</version>
     <authors>Akitsugu Komiyama</authors>
     <owners>Akitsugu Komiyama</owners>
     <icon>icon.png</icon>
@@ -17,7 +17,7 @@
     ・ .NET Framework 4.x
     を「C#経由で」で利用するためのライブラリです。
     </description>
-    <releaseNotes>Hm.Macro.StaticVar.Get/Set がアクセスできなくなっていたバグを修正。</releaseNotes>
+    <releaseNotes>秀丸エディタ 64bit かつ 浮動小数点版にて、秀丸マクロ上の定数取得に失敗することがある不具合の修正</releaseNotes>
     <copyright>Copyright (C) 2021-2023 Akitsugu Komiyama</copyright>
     <tags>C# Hidemaru 秀丸 Library Macros</tags>
     <language>ja-JP</language>
