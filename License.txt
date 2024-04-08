@@ -1,5 +1,5 @@
 - Hm.NetCOM
-   Copyright (C) 2021-2023 Akitsugu Komiyama
+   Copyright (C) 2021-2024 Akitsugu Komiyama
 
 
    The MIT License (MIT)
