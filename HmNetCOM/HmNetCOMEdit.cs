@@ -59,10 +59,19 @@ namespace HmNetCOM
                 }
                 set
                 {
-                    SetTotalText(value);
+                    // 935.β6以降は、settotaltext() が実装された。
+                    if (Version >= 935.06)
+                    {
+                        SetTotalText2(value);
+                    }
+                    else
+                    {
+                        SetTotalText(value);
+                    }
                 }
             }
             static partial void SetTotalText(string text);
+            static partial void SetTotalText2(string text);
 
 
             /// <summary>
@@ -376,6 +385,33 @@ namespace HmNetCOM
                 insert member(#_COM_NET_PINVOKE_MACRO_VAR, ""DllToMacro"" );
                 releaseobject(#_COM_NET_PINVOKE_MACRO_VAR);
                 endgroupundo;
+                ";
+                Macro.IResult result = null;
+                if (Macro.IsExecuting)
+                {
+                    result = Hm.Macro.Eval(cmd);
+                } else
+                {
+                    result = Hm.Macro.Exec.Eval(cmd);
+                }
+
+                HmMacroCOMVar.ClearVar();
+                if (result.Error != null)
+                {
+                    throw result.Error;
+                }
+            }
+
+            static partial void SetTotalText2(string text)
+            {
+                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
+                string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
+                HmMacroCOMVar.SetMacroVar(text);
+                string cmd = $@"
+                #_COM_NET_PINVOKE_MACRO_VAR = createobject(@""{myTargetDllFullPath}"", @""{myTargetClass}"" );
+                settotaltext member(#_COM_NET_PINVOKE_MACRO_VAR, ""DllToMacro"" );
+                releaseobject(#_COM_NET_PINVOKE_MACRO_VAR);
                 ";
                 Macro.IResult result = null;
                 if (Macro.IsExecuting)
