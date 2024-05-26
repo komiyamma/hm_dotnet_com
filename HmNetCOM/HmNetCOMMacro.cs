@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2021-2023 Akitsugu Komiyama
+ * Copyright (C) 2021-2024 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -16,6 +16,36 @@ namespace HmNetCOM
     {
         public static partial class Macro
         {
+            /// <summary>
+            /// マクロの debuginfo と同じ関数だが、マクロ実行中以外でも扱える。
+            /// 必要かどうかは微妙なところだが、マクロの debuginfo(0)～debuginfo(2) など、表示設定の反映の恩恵を受けられる点が異なる
+            /// マクロの debuginfo とは異なり、マクロの実行が終えたからといって、自動的に debuginfo(0)にリセットされたりはしない。
+            /// よって非表示にするためには、明示的に debuginfo(0)を、マクロ側もしくはプログラム側から明示的に実行する必要がある。
+            /// </summary>
+            /// <returns>成功したときは0以外、失敗したときは0を返す。</returns>
+            public static int DebugInfo(params Object[] messages)
+            {
+                if (Version < 898)
+                {
+                    throw new MissingMethodException("Hidemaru_Macro_DebugInfo_Exception");
+                }
+                if (pDebugInfo == null)
+                {
+                    throw new MissingMethodException("Hidemaru_Macro_DebugInfo_Exception");
+                }
+                List<String> list = new List<String>();
+                foreach (var exp in messages)
+                {
+                    var mixedString = exp.ToString();
+                    string unifiedString = mixedString.Replace("\r\n", "\n").Replace("\n", "\r\n");
+                    list.Add(unifiedString);
+                }
+
+                String joind = String.Join(" ", list);
+
+                return pDebugInfo(joind);
+            }
+
             /// <summary>
             /// マクロを実行中か否かを判定する
             /// </summary>

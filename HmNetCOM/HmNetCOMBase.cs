@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2021-2023 Akitsugu Komiyama
+ * Copyright (C) 2021-2024 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -157,6 +157,9 @@ namespace HmNetCOM
         private delegate int TEvalMacro([MarshalAs(UnmanagedType.LPWStr)] String pwsz);
 
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        private delegate int TDebugInfo([MarshalAs(UnmanagedType.LPWStr)] String pwsz);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate int TCheckQueueStatus();
 
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
@@ -182,6 +185,7 @@ namespace HmNetCOM
         private static TGetCursorPosUnicode pGetCursorPosUnicode;
         private static TGetCursorPosUnicodeFromMousePos pGetCursorPosUnicodeFromMousePos;
         private static TEvalMacro pEvalMacro;
+        private static TDebugInfo pDebugInfo;
         private static TCheckQueueStatus pCheckQueueStatus;
         private static TAnalyzeEncoding pAnalyzeEncoding;
         private static TLoadFileUnicode pLoadFileUnicode;
@@ -216,6 +220,12 @@ namespace HmNetCOM
                         pAnalyzeEncoding = hmExeHandle.GetProcDelegate<TAnalyzeEncoding>("Hidemaru_AnalyzeEncoding");
                         pLoadFileUnicode = hmExeHandle.GetProcDelegate<TLoadFileUnicode>("Hidemaru_LoadFileUnicode");
                     }
+
+                    if (Version >= 898)
+                    {
+                        pDebugInfo = hmExeHandle.GetProcDelegate<TDebugInfo>("Hidemaru_DebugInfo");
+                    }
+
                     if (Version >= 915)
                     {
                         pGetStaticVariable = hmExeHandle.GetProcDelegate<TGetStaticVariable>("Hidemaru_GetStaticVariable");
