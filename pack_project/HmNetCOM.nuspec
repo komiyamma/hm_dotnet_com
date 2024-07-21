@@ -3,7 +3,7 @@
   <metadata>
     <id>HmNetCOM</id>
     <title>Hm.NetCOM</title>
-    <version>2.0.8.6</version>
+    <version>2.0.8.7</version>
     <authors>Akitsugu Komiyama</authors>
     <owners>Akitsugu Komiyama</owners>
     <icon>icon.png</icon>
@@ -17,8 +17,8 @@
     ・ .NET Framework 4.x
     を「C#経由で」で利用するためのライブラリです。
     </description>
-    <releaseNotes>範囲編集モードでHm.Edit.TotalText に値を設定した場合の不具合の修正</releaseNotes>
-    <copyright>Copyright (C) 2021-2023 Akitsugu Komiyama</copyright>
+    <releaseNotes>Hm.Edit.TotalText に値を設定する際、秀丸エディタ v9.35以上の場合はsettotaltextを内部的に利用するようにした</releaseNotes>
+    <copyright>Copyright (C) 2021-2024 Akitsugu Komiyama</copyright>
     <tags>C# Hidemaru 秀丸 Library Macros</tags>
     <language>ja-JP</language>
     <contentFiles>
