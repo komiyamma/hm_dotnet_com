@@ -1,0 +1,8 @@
+G:\repogitory\hm_dotnet_com\HmNetCOM\bin\Release\netstandard2.0\HmNetCOM.deps.json
+G:\repogitory\hm_dotnet_com\HmNetCOM\bin\Release\netstandard2.0\HmNetCOM.dll
+G:\repogitory\hm_dotnet_com\HmNetCOM\obj\Release\netstandard2.0\HmNetCOM.csproj.AssemblyReference.cache
+G:\repogitory\hm_dotnet_com\HmNetCOM\obj\Release\netstandard2.0\HmNetCOM.GeneratedMSBuildEditorConfig.editorconfig
+G:\repogitory\hm_dotnet_com\HmNetCOM\obj\Release\netstandard2.0\HmNetCOM.AssemblyInfoInputs.cache
+G:\repogitory\hm_dotnet_com\HmNetCOM\obj\Release\netstandard2.0\HmNetCOM.AssemblyInfo.cs
+G:\repogitory\hm_dotnet_com\HmNetCOM\obj\Release\netstandard2.0\HmNetCOM.csproj.CoreCompileInputs.cache
+G:\repogitory\hm_dotnet_com\HmNetCOM\obj\Release\netstandard2.0\HmNetCOM.dll
