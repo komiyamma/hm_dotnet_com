@@ -10,7 +10,7 @@
 
 
 Hm.NetCOMとは、秀丸マクロの「COM (createobject)」関連機能を用い、
-- .NET 5.0 - .NET 8.0
+- .NET 5.0 - .NET 9.0
 - .NET Core 3.1
 - .NET Framework 4.x
 
