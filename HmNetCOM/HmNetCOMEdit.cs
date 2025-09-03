@@ -373,7 +373,7 @@ namespace HmNetCOM
         {
             static partial void SetTotalText(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -404,7 +404,7 @@ namespace HmNetCOM
 
             static partial void SetTotalText2(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -431,7 +431,7 @@ namespace HmNetCOM
 
             static partial void SetSelectedText(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -462,7 +462,7 @@ namespace HmNetCOM
 
             static partial void SetLineText(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);

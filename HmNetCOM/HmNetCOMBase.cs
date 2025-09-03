@@ -31,8 +31,28 @@ namespace HmNetCOM
 
         static Hm()
         {
+            SetSelfDllPath();
             SetVersion();
             BindHidemaruExternFunctions();
+        }
+
+        private static string m_selfDllPath = "";
+        private static string m_selfDllDir = "";
+
+        private static void SetSelfDllPath()
+        {
+            // ファイル名を取得するためのバッファ
+            StringBuilder fileName = new StringBuilder(260);
+
+            // GetModuleFileName を呼び出す (IntPtr.Zero を使用して、自分自身のパスを取得)
+            uint result = GetModuleFileName(IntPtr.Zero, fileName, fileName.Capacity);
+            m_selfDllPath = fileName.ToString(); // 成功した場合はファイル名を返す
+            m_selfDllDir = Path.GetDirectoryName(m_selfDllPath);
+        }
+
+        public static string GetExecutingAssemblyLocation()
+        {
+            return m_selfDllDir;
         }
 
         private static void SetVersion()

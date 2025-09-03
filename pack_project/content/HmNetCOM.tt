@@ -1,6 +1,6 @@
 /*
- * HmNetCOM ver 2.087
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * HmNetCOM ver 2.088
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 
 
 /*
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -47,8 +47,28 @@ namespace HmNetCOM
 
         static Hm()
         {
+            SetSelfDllPath();
             SetVersion();
             BindHidemaruExternFunctions();
+        }
+
+        private static string m_selfDllPath = "";
+        private static string m_selfDllDir = "";
+
+        private static void SetSelfDllPath()
+        {
+            // ファイル名を取得するためのバッファ
+            StringBuilder fileName = new StringBuilder(260);
+
+            // GetModuleFileName を呼び出す (IntPtr.Zero を使用して、自分自身のパスを取得)
+            uint result = GetModuleFileName(IntPtr.Zero, fileName, fileName.Capacity);
+            m_selfDllPath = fileName.ToString(); // 成功した場合はファイル名を返す
+            m_selfDllDir = Path.GetDirectoryName(m_selfDllPath);
+        }
+
+        public static string GetExecutingAssemblyLocation()
+        {
+            return m_selfDllDir;
         }
 
         private static void SetVersion()
@@ -375,7 +395,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -725,7 +745,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -1094,7 +1114,7 @@ namespace HmNetCOM
         {
             static partial void SetTotalText(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = Hm.GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -1125,7 +1145,7 @@ namespace HmNetCOM
 
             static partial void SetTotalText2(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = Hm.GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -1153,7 +1173,7 @@ namespace HmNetCOM
 
             static partial void SetSelectedText(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = Hm.GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -1184,7 +1204,7 @@ namespace HmNetCOM
 
             static partial void SetLineText(string text)
             {
-                string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string myDllFullPath = Hm.GetExecutingAssemblyLocation();
                 string myTargetDllFullPath = HmMacroCOMVar.GetMyTargetDllFullPath(myDllFullPath);
                 string myTargetClass = HmMacroCOMVar.GetMyTargetClass(myDllFullPath);
                 HmMacroCOMVar.SetMacroVar(text);
@@ -1245,7 +1265,7 @@ namespace HmNetCOM
 
 
 /*
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -1626,7 +1646,7 @@ namespace HmNetCOM
 }
 
 /*
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -1746,7 +1766,7 @@ namespace HmNetCOM
 }
 
 /*
- * Copyright (C) 2021-2024 Akitsugu Komiyama
+ * Copyright (C) 2021-2025 Akitsugu Komiyama
  * under the MIT License
  **/
 
@@ -1968,7 +1988,7 @@ namespace HmNetCOM
 
         internal static object GetVar(string var_name)
         {
-            string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string myDllFullPath = Hm.GetExecutingAssemblyLocation();
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
@@ -1987,7 +2007,7 @@ namespace HmNetCOM
 
         internal static int SetVar(string var_name, object obj)
         {
-            string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string myDllFullPath = Hm.GetExecutingAssemblyLocation();
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
@@ -2012,7 +2032,7 @@ namespace HmNetCOM
         internal static Hm.Macro.IResult BornMacroScopeMethod(String scopename, String dllfullpath, String typefullname, String methodname)
         {
 
-            string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string myDllFullPath = Hm.GetExecutingAssemblyLocation();
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
@@ -2044,7 +2064,7 @@ namespace HmNetCOM
                 {
                     string parameter = message_parameter;
                     // 渡されたメソッドが自分自身のdllと異なるのはダメ
-                    if (delegate_method.Method.DeclaringType.Assembly.Location != System.Reflection.Assembly.GetExecutingAssembly().Location)
+                    if (delegate_method.Method.DeclaringType.Assembly.Location != Hm.GetExecutingAssemblyLocation())
                     {
                         string message_no_dll_myself = "The Delegate method must in " + System.Reflection.Assembly.GetExecutingAssembly().Location;
                         var result_no_dll_myself = new TResult(0, "", new MissingMethodException(message_no_dll_myself));

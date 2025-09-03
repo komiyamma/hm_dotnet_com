@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2021-2023 Akitsugu Komiyama")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.8.6")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.8.6+15f1cb3e6ee2d51b0a08c60ae3b5940c07608d95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.8.6+93c8ad2a598548b867b2c5d6baef35bfbcbfa258")]
 [assembly: System.Reflection.AssemblyProductAttribute("HmNetCOM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HmNetCOM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.0.8.6")]

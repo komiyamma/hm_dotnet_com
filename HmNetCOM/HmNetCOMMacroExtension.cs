@@ -211,7 +211,7 @@ namespace HmNetCOM
 
         internal static object GetVar(string var_name)
         {
-            string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string myDllFullPath = GetExecutingAssemblyLocation();
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
@@ -230,7 +230,7 @@ namespace HmNetCOM
 
         internal static int SetVar(string var_name, object obj)
         {
-            string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string myDllFullPath = GetExecutingAssemblyLocation();
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
@@ -255,7 +255,7 @@ namespace HmNetCOM
         internal static Hm.Macro.IResult BornMacroScopeMethod(String scopename, String dllfullpath, String typefullname, String methodname)
         {
 
-            string myDllFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string myDllFullPath = GetExecutingAssemblyLocation();
             string myTargetDllFullPath = GetMyTargetDllFullPath(myDllFullPath);
             string myTargetClass = GetMyTargetClass(myDllFullPath);
             ClearVar();
@@ -287,9 +287,9 @@ namespace HmNetCOM
                 {
                     string parameter = message_parameter;
                     // 渡されたメソッドが自分自身のdllと異なるのはダメ
-                    if (delegate_method.Method.DeclaringType.Assembly.Location != System.Reflection.Assembly.GetExecutingAssembly().Location)
+                    if (delegate_method.Method.DeclaringType.Assembly.Location != GetExecutingAssemblyLocation();
                     {
-                        string message_no_dll_myself = "The Delegate method must in " + System.Reflection.Assembly.GetExecutingAssembly().Location;
+                        string message_no_dll_myself = "The Delegate method must in " + GetExecutingAssemblyLocation();
                         var result_no_dll_myself = new TResult(0, "", new MissingMethodException(message_no_dll_myself));
                         System.Diagnostics.Trace.WriteLine(result_no_dll_myself);
                         return result_no_dll_myself;
